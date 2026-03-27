@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Clock3, ChevronLeft, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
 import {
   TASK_DATA,
-  SCORE_CONFIG,
   type TaskMode,
   type VariantConfig,
   type TaskConfig
@@ -45,6 +44,9 @@ type ResultPanelProps = {
   submitted: boolean;
   examMode: boolean;
   timeLeft: number | null;
+  result: CheckResult | null;
+  isChecking: boolean;
+  error: string;
 };
 
 type PlaceholderCardProps = {
@@ -58,6 +60,45 @@ type StatusPillProps = {
 
 type AnimatedLettersProps = {
   text: string;
+};
+
+type CheckResult = {
+  wordCount: number;
+  lengthStatus: "underlength" | "acceptable" | "overlength";
+  truncatedTo154: boolean;
+  scores: {
+    content: number;
+    organization: number;
+    language?: number;
+    vocabulary?: number;
+    grammar?: number;
+    spelling?: number;
+  };
+  maxScores: {
+    content: number;
+    organization: number;
+    language?: number;
+    vocabulary?: number;
+    grammar?: number;
+    spelling?: number;
+  };
+  total: number;
+  maxTotal: number;
+  aspects?: Array<{
+    aspect: string;
+    status: "done" | "partial" | "missing";
+    comment: string;
+  }>;
+  organizationErrorsCount?: number;
+  organizationIssues?: string[];
+  lexGramErrorsCount?: number;
+  lexGramIssues?: string[];
+  spellingPunctuationErrorsCount?: number;
+  spellingPunctuationIssues?: string[];
+  feedback: {
+    strengths: string;
+    improvements: string;
+  };
 };
 
 
@@ -101,6 +142,9 @@ function CheckerDemo() {
   const [text, setText] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [result, setResult] = useState<CheckResult | null>(null);
+  const [isChecking, setIsChecking] = useState(false);
+  const [error, setError] = useState("");
 
   const currentTask = mode ? TASK_DATA[mode] : null;
   const variants = useMemo(() => currentTask?.variants ?? [], [currentTask]);
@@ -132,10 +176,43 @@ function CheckerDemo() {
     return () => window.clearInterval(timer);
   }, [examMode, timeLeft]);
 
-  const handleSubmit = () => {
-    if (examMode && timeLeft !== null && timeLeft <= 0) return;
+const handleSubmit = async () => {
+  if (examMode && timeLeft !== null && timeLeft <= 0) return;
+  if (!activeVariant || !text.trim()) return;
+
+  try {
+    setIsChecking(true);
+    setError("");
+    setResult(null)
+    setSubmitted(false);
+
+    const response = await fetch("/api/check-writing", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        prompt: activeVariant.prompt,
+        studentText: text
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data?.error || "Request failed");
+    }
+
+    const parsed = JSON.parse(data.output);
+    setResult(parsed);
     setSubmitted(true);
-  };
+  } catch (err) {
+    console.error(err);
+    setError("Не удалось выполнить проверку. Попробуйте ещё раз.");
+  } finally {
+    setIsChecking(false);
+  }
+};
 
   const handleSelectMode = (nextMode: TaskMode) => {
     setMode(nextMode);
@@ -144,6 +221,9 @@ function CheckerDemo() {
     setSubmitted(false);
     setExamMode(false);
     setTimeLeft(null);
+    setResult(null);
+    setError("");
+    setIsChecking(false);
   };
 
   const handleSelectVariant = (variantId: number | null) => {
@@ -151,6 +231,9 @@ function CheckerDemo() {
     setText("");
     setSubmitted(false);
     setTimeLeft(examMode && currentTask ? currentTask.duration : null);
+    setResult(null);
+    setError("");
+    setIsChecking(false);
   };
 
   const resetAll = () => {
@@ -160,6 +243,9 @@ function CheckerDemo() {
     setSubmitted(false);
     setExamMode(false);
     setTimeLeft(null);
+    setResult(null);
+    setError("");
+    setIsChecking(false);
   };
 
   const resetToVariants = () => {
@@ -167,6 +253,9 @@ function CheckerDemo() {
     setText("");
     setSubmitted(false);
     setTimeLeft(null);
+    setResult(null);
+    setError("");
+    setIsChecking(false);
   };
 
   return (
@@ -211,6 +300,9 @@ function CheckerDemo() {
               submitted={submitted}
               examMode={examMode}
               timeLeft={timeLeft}
+              result={result}
+              isChecking={isChecking}
+              error={error}
             />
           </motion.aside>
         )}
@@ -224,9 +316,6 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
     <div>
       <p className="mb-3 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
       <h2 className="mb-3 text-2xl font-semibold md:text-3xl">Выберите тип задания</h2>
-      <p className="mb-8 max-w-xl text-white/65">
-        Сначала пользователь выбирает формат письменной части, а затем — конкретный вариант задания.
-      </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <TaskCard
@@ -280,9 +369,7 @@ function ChooseVariant({ mode, variants, onBack, onSelect }: ChooseVariantProps)
         {mode === "letter" ? "Письмо" : "Эссе"}
       </p>
       <h2 className="mb-3 text-2xl font-semibold md:text-3xl">Выберите вариант</h2>
-      <p className="mb-8 text-white/65">
-        У каждого варианта будет свой отдельный текст задания и собственный промпт для проверки.
-      </p>
+      
 
       <div className="grid grid-cols-3 gap-3 sm:grid-cols-5">
         {variants.map((variant) => (
@@ -316,71 +403,64 @@ function TaskView({
   return (
     <div>
       <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div>
-          <button
-            onClick={onBack}
-            className="mb-4 inline-flex items-center gap-2 text-sm text-white/55 transition hover:text-white"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            К вариантам
-          </button>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
-            <Icon className="h-4 w-4" />
-            {currentTask.title} · Вариант {activeVariant.label}
-          </div>
-          <h2 className="text-2xl font-semibold md:text-3xl">Задание</h2>
-        </div>
+  <div className="min-w-0">
+    <div className="mb-4 flex flex-wrap items-center gap-3">
+      <button
+        onClick={onBack}
+        className="inline-flex items-center gap-2 text-sm text-white/55 transition hover:text-white"
+      >
+        <ChevronLeft className="h-4 w-4" />
+        К вариантам
+      </button>
 
-        <div className="flex flex-col items-start gap-3 md:items-end">
-          <label className="inline-flex cursor-pointer items-center gap-3 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2 text-sm text-teal-100/90">
-            <input
-              type="checkbox"
-              checked={examMode}
-              onChange={(e) => setExamMode(e.target.checked)}
-              className="h-4 w-4 rounded border-white/20 bg-transparent"
-            />
-            Перейти в режим экзамена
-          </label>
-
-          <AnimatePresence>
-            {examMode && (
-              <motion.div
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${
-                  expired
-                    ? "border-red-400/30 bg-red-500/10 text-red-200"
-                    : "border-teal-400/15 bg-teal-400/10 text-teal-100/90"
-                }`}
-              >
-                <Clock3 className="h-4 w-4" />
-                {formatTime(timeLeft ?? currentTask.duration)}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+      <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
+        <Icon className="h-4 w-4" />
+        {currentTask.title} · Вариант {activeVariant.label}
       </div>
+    </div>
 
-      <div className="mb-5 rounded-[24px] border border-white/10 bg-white/[0.04] p-5 text-white/78">
-        <p className="mb-2 text-xs uppercase tracking-[0.24em] text-white/40">Текст задания</p>
+    <h2 className="text-2xl font-semibold md:text-3xl">Задание</h2>
+  </div>
 
-        <p className="whitespace-pre-line leading-7">{activeVariant.taskTextTop}</p>
+  <div className="flex flex-col items-start gap-3 md:items-end">
+    <div className="inline-flex items-center gap-3 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2 text-sm text-teal-100/90">
+      <span>Режим экзамена</span>
 
-        {activeVariant.image && (
-         <div className="my-5 rounded-[20px] border border-white/10 bg-white/[0.03] p-3">
-          <img
-            src={activeVariant.image}
-            alt={`Материалы к варианту ${activeVariant.label}`}
-            className="w-full object-cover"
-          />
-          </div>
-        )}
+      <button
+        type="button"
+        onClick={() => setExamMode((prev) => !prev)}
+        aria-pressed={examMode}
+        className={`relative h-6 w-11 rounded-full transition-colors ${
+          examMode ? "bg-teal-300" : "bg-white/15"
+        }`}
+      >
+        <span
+          className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${
+            examMode ? "left-[22px]" : "left-0.5"
+          }`}
+        />
+      </button>
+    </div>
 
-        {activeVariant.taskTextBottom && (
-          <p className="whitespace-pre-line leading-7">{activeVariant.taskTextBottom}</p>
-        )}
-      </div>
+    <AnimatePresence>
+      {examMode && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${
+            expired
+              ? "border-red-400/30 bg-red-500/10 text-red-200"
+              : "border-teal-400/15 bg-teal-400/10 text-teal-100/90"
+          }`}
+        >
+          <Clock3 className="h-4 w-4" />
+          {formatTime(timeLeft ?? currentTask.duration)}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+</div>
 
       
 
@@ -417,19 +497,34 @@ function TaskView({
   );
 }
 
-function ResultPanel({ mode, selectedVariant, submitted, examMode, timeLeft }: ResultPanelProps) {
+function ResultPanel({
+  mode,
+  selectedVariant,
+  submitted,
+  examMode,
+  timeLeft,
+  result,
+  isChecking,
+  error
+}: ResultPanelProps) {
+
   const expired = examMode && timeLeft !== null && timeLeft <= 0;
 
   return (
     <div className="h-full">
       <p className="mb-3 text-sm uppercase tracking-[0.24em] text-white/45">Результат</p>
       <h2 className="mb-3 text-2xl font-semibold">Проверка и рекомендации</h2>
-      <p className="mb-6 text-white/65">
-        Пока это демонстрационный экран. Позже сюда будет подгружаться ответ модели по конкретному выбранному варианту и его отдельному промпту.
-      </p>
 
       {!mode || !selectedVariant ? (
         <PlaceholderCard text="Сначала откройте конкретный вариант задания." />
+      ) : isChecking ? (
+            <div className="flex h-full min-h-[300px] flex-col items-center justify-center rounded-[24px] border border-white/10 bg-white/5 px-6 text-center">
+              <div className="mb-4 h-10 w-10 animate-spin rounded-full border-4 border-white/15 border-t-teal-300"></div>
+              <p className="text-base font-medium text-white">Идёт проверка работы...</p>
+              <p className="mt-2 text-sm text-white/50">Пожалуйста, подождите несколько секунд</p>
+            </div>
+          ) : error ? (
+        <PlaceholderCard text={error} />
       ) : !submitted ? (
         <div className="space-y-4">
           <StatusPill label={`Тип задания: ${mode === "letter" ? "Письмо" : "Эссе"}`} />
@@ -454,61 +549,168 @@ function ResultPanel({ mode, selectedVariant, submitted, examMode, timeLeft }: R
               <CheckCircle2 className="h-4 w-4" />
               Ответ получен
             </div>
-            <p className="text-sm leading-7 text-white/75">
-              Здесь будет вывод проверки по критериям ЕГЭ: баллы, рекомендации и комментарии по ошибкам внутри общего блока ответа модели.
-            </p>
-          </div>
 
-          <DemoScoreBlock mode={mode} />
+            <div className="space-y-4 text-sm leading-7 text-white/75">
+              <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                <span className="font-semibold text-white">Общий балл:</span> {result?.total ?? 0} / {result?.maxTotal ?? 0}
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                <span className="font-semibold text-white">Количество слов:</span> {result?.wordCount ?? 0}
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                <span className="font-semibold text-white">Статус объёма:</span>{" "}
+                {result?.lengthStatus === "underlength"
+                  ? "Недостаточный объём"
+                  : result?.lengthStatus === "overlength"
+                  ? "Превышен объём"
+                  : "Объём в норме"}
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                <div className="mb-3 font-semibold text-white">Баллы по критериям</div>
+
+                <div className="space-y-2">
+                  {mode === "letter" ? (
+                    <>
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Решение коммуникативной задачи</span>
+                        <span className="font-medium">
+                          {result?.scores.content ?? 0} / {result?.maxScores.content ?? 2}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Организация текста</span>
+                        <span className="font-medium">
+                          {result?.scores.organization ?? 0} / {result?.maxScores.organization ?? 2}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Языковое оформление текста</span>
+                        <span className="font-medium">
+                          {result?.scores.language ?? 0} / {result?.maxScores.language ?? 2}
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Решение коммуникативной задачи</span>
+                        <span className="font-medium">
+                          {result?.scores.content ?? 0} / {result?.maxScores.content ?? 3}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Организация текста</span>
+                        <span className="font-medium">
+                          {result?.scores.organization ?? 0} / {result?.maxScores.organization ?? 3}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Лексика</span>
+                        <span className="font-medium">
+                          {result?.scores.vocabulary ?? 0} / {result?.maxScores.vocabulary ?? 3}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Грамматика</span>
+                        <span className="font-medium">
+                          {result?.scores.grammar ?? 0} / {result?.maxScores.grammar ?? 3}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2">
+                        <span>Орфография и пунктуация</span>
+                        <span className="font-medium">
+                          {result?.scores.spelling ?? 0} / {result?.maxScores.spelling ?? 2}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {mode === "letter" && (
+                <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                  <div className="mb-3 font-semibold text-white">Детали проверки</div>
+
+                  <div className="space-y-3 text-white/75">
+                    <div>
+                      <span className="font-medium text-white">Ошибки в организации:</span>{" "}
+                      {result?.organizationErrorsCount ?? 0}
+                    </div>
+
+                    {result?.organizationIssues && result.organizationIssues.length > 0 && (
+                      <div>
+                        <div className="mb-1 font-medium text-white">Что найдено по организации:</div>
+                        <ul className="space-y-1 pl-5">
+                          {result.organizationIssues.map((issue, index) => (
+                            <li key={index} className="list-disc">
+                              {issue}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div>
+                      <span className="font-medium text-white">Лексико-грамматические ошибки:</span>{" "}
+                      {result?.lexGramErrorsCount ?? 0}
+                    </div>
+
+                    {result?.lexGramIssues && result.lexGramIssues.length > 0 && (
+                      <div>
+                        <div className="mb-1 font-medium text-white">Примеры лексико-грамматических ошибок:</div>
+                        <ul className="space-y-1 pl-5">
+                          {result.lexGramIssues.map((issue, index) => (
+                            <li key={index} className="list-disc">
+                              {issue}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div>
+                      <span className="font-medium text-white">Орфографические и пунктуационные ошибки:</span>{" "}
+                      {result?.spellingPunctuationErrorsCount ?? 0}
+                    </div>
+
+                    {result?.spellingPunctuationIssues && result.spellingPunctuationIssues.length > 0 && (
+                      <div>
+                        <div className="mb-1 font-medium text-white">Примеры орфографических и пунктуационных ошибок:</div>
+                        <ul className="space-y-1 pl-5">
+                          {result.spellingPunctuationIssues.map((issue, index) => (
+                            <li key={index} className="list-disc">
+                              {issue}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                <span className="font-semibold text-white">Сильные стороны:</span>
+                <p className="mt-2 text-white/75">{result?.feedback.strengths || "—"}</p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">
+                <span className="font-semibold text-white">Что улучшить:</span>
+                <p className="mt-2 text-white/75">{result?.feedback.improvements || "—"}</p>
+              </div>
+            </div>
+          </div>
         </motion.div>
       )}
-    </div>
-  );
-}
-
-function DemoScoreBlock({ mode }: { mode: Exclude<TaskMode, null> }) {
-  const criteria = SCORE_CONFIG[mode];
-
-  const demoScores: Record<string, number> =
-    mode === "letter"
-      ? {
-          content: 2,
-          organization: 2,
-          language: 1
-        }
-      : {
-          content: 3,
-          organization: 2,
-          vocabulary: 2,
-          grammar: 2,
-          spelling: 2
-        };
-
-  const total = criteria.reduce((sum, item) => sum + (demoScores[item.key] ?? 0), 0);
-  const maxTotal = criteria.reduce((sum, item) => sum + item.max, 0);
-
-  return (
-    <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
-      <div className="mb-4 flex items-center justify-between">
-        <span className="text-sm text-white/55">Пример отображения</span>
-        <span className="rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1 text-sm text-teal-100/90">
-          {total} / {maxTotal}
-        </span>
-      </div>
-
-      <div className="space-y-3">
-        {criteria.map((criterion) => (
-          <div
-            key={criterion.key}
-            className="flex items-center justify-between rounded-2xl border border-white/8 bg-black/15 px-4 py-3 text-sm"
-          >
-            <span className="text-white/70">{criterion.label}</span>
-            <span className="font-medium text-white">
-              {demoScores[criterion.key] ?? 0}/{criterion.max}
-            </span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
