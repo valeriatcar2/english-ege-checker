@@ -79,7 +79,7 @@ const TASK_DATA: TaskMap = {
   letter: {
     title: "Письмо",
     icon: Mail,
-    duration: 12 * 60,
+    duration: 15 * 60,
     placeholder: "Введите здесь свой ответ на задание по письму...",
     variants: Array.from({ length: 15 }, (_, index) => ({
       id: index + 1,
@@ -91,7 +91,7 @@ const TASK_DATA: TaskMap = {
   essay: {
     title: "Эссе",
     icon: FileText,
-    duration: 40 * 60,
+    duration: 45 * 60,
     placeholder: "Введите здесь своё эссе...",
     variants: Array.from({ length: 15 }, (_, index) => ({
       id: index + 1,
