@@ -99,7 +99,7 @@ export const TASK_DATA: TaskMap = {
         taskTextTop: `Imagine that you are doing a project on studying foreign languages in Zetland. You have found some data on the subject – the results оf the opinion polls (see the pie chart below) .
         Comment on the data in the pie chart and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
-        
+
         Use the following plan:
         –  make an opening statement on the subject of the project;
         –  select and report 2–3 facts;
@@ -111,4 +111,25 @@ export const TASK_DATA: TaskMap = {
       }
     ]
   }
+};
+
+export type CriterionConfig = {
+  key: string;
+  label: string;
+  max: number;
+};
+
+export const SCORE_CONFIG = {
+  letter: [
+    { key: "content", label: "Решение коммуникативной задачи", max: 2 },
+    { key: "organization", label: "Организация текста", max: 2 },
+    { key: "language", label: "Языковое оформление текста", max: 2 }
+  ],
+  essay: [
+    { key: "content", label: "Решение коммуникативной задачи", max: 3 },
+    { key: "organization", label: "Организация текста", max: 3 },
+    { key: "vocabulary", label: "Лексика", max: 3 },
+    { key: "grammar", label: "Грамматика", max: 3 },
+    { key: "spelling", label: "Орфография и пунктуация", max: 2 }
+  ]
 };

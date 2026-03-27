@@ -1,7 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock3, ChevronLeft, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
-import { TASK_DATA, type TaskMode, type VariantConfig, type TaskConfig } from "./data/tasks";
+import {
+  TASK_DATA,
+  SCORE_CONFIG,
+  type TaskMode,
+  type VariantConfig,
+  type TaskConfig
+} from "./data/tasks";
 
 type ChooseTaskProps = {
   setMode: (mode: TaskMode) => void;
@@ -225,13 +231,13 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
       <div className="grid gap-4 sm:grid-cols-2">
         <TaskCard
           title="Письмо"
-          subtitle="Личное письмо в формате ЕГЭ"
+          subtitle="Электронное письмо личного характера"
           icon={Mail}
           onClick={() => setMode("letter")}
         />
         <TaskCard
           title="Эссе"
-          subtitle="Opinion essay в формате ЕГЭ"
+          subtitle="Аналитическое эссе"
           icon={FileText}
           onClick={() => setMode("essay")}
         />
@@ -453,45 +459,61 @@ function ResultPanel({ mode, selectedVariant, submitted, examMode, timeLeft }: R
             </p>
           </div>
 
-          <DemoScoreBlock />
+          <DemoScoreBlock mode={mode} />
         </motion.div>
       )}
     </div>
   );
 }
 
-function DemoScoreBlock() {
-  const items: Array<[string, string]> = [
-    ["Содержание", "3/3"],
-    ["Организация", "2/3"],
-    ["Лексика", "2/3"],
-    ["Грамматика", "2/3"],
-    ["Орфография и пунктуация", "2/2"]
-  ];
+function DemoScoreBlock({ mode }: { mode: Exclude<TaskMode, null> }) {
+  const criteria = SCORE_CONFIG[mode];
+
+  const demoScores: Record<string, number> =
+    mode === "letter"
+      ? {
+          content: 2,
+          organization: 2,
+          language: 1
+        }
+      : {
+          content: 3,
+          organization: 2,
+          vocabulary: 2,
+          grammar: 2,
+          spelling: 2
+        };
+
+  const total = criteria.reduce((sum, item) => sum + (demoScores[item.key] ?? 0), 0);
+  const maxTotal = criteria.reduce((sum, item) => sum + item.max, 0);
 
   return (
     <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
       <div className="mb-4 flex items-center justify-between">
         <span className="text-sm text-white/55">Пример отображения</span>
         <span className="rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1 text-sm text-teal-100/90">
-          11 / 14
+          {total} / {maxTotal}
         </span>
       </div>
 
       <div className="space-y-3">
-        {items.map(([label, score]) => (
+        {criteria.map((criterion) => (
           <div
-            key={label}
+            key={criterion.key}
             className="flex items-center justify-between rounded-2xl border border-white/8 bg-black/15 px-4 py-3 text-sm"
           >
-            <span className="text-white/70">{label}</span>
-            <span className="font-medium text-white">{score}</span>
+            <span className="text-white/70">{criterion.label}</span>
+            <span className="font-medium text-white">
+              {demoScores[criterion.key] ?? 0}/{criterion.max}
+            </span>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+  
 
 function PlaceholderCard({ text }: PlaceholderCardProps) {
   return (
