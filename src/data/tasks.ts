@@ -13,7 +13,8 @@ export type TaskMode = "letter" | "essay" | null;
 export type VariantConfig = {
   id: number;
   label: string;
-  taskText: string;
+  taskTextTop: string;
+  taskTextBottom?: string;
   prompt: string;
   image?: string;
 };
@@ -41,9 +42,8 @@ export const TASK_DATA: TaskMap = {
       {
         id: 1,
         label: "1",
-        taskText: `You have received an email message from your English-speaking pen-friend Charles: 
-        
-        Write an email to Charles.
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Charles:`, 
+        taskTextBottom: `Write an email to Charles.
         In your message: 
         – answer his questions; 
         – ask 3 questions about the school trip. 
@@ -56,11 +56,10 @@ export const TASK_DATA: TaskMap = {
       {
         id: 2,
         label: "2",
-        taskText: `You have received an email message from your English-speaking pen-friend George:
-
-        Write an email to George.
+        taskTextTop: `You have received an email message from your English speaking pen-friend George:`, 
+        taskTextBottom: `Write an email to George.
         In your message:
-
+         
         – answer his questions;
         – ask 3 questions about the youth camp.
          
@@ -81,7 +80,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 1,
         label: "1",
-        taskText: `Imagine that you are doing a project on what helped Zetland teenagers the most in preparing for final exams. You have found some data on the subject — the results of a survey.
+        taskTextTop: `Imagine that you are doing a project on what helped Zetland teenagers the most in preparing for final exams. You have found some data on the subject — the results of a survey.
 
 Comment on the survey data and give your opinion on the subject of the project.
 
@@ -99,7 +98,7 @@ Use the following plan:
       {
         id: 2,
         label: "2",
-        taskText: `Imagine that you are doing a project on how Zetland teenagers usually spend their weekends. You have found some data on the subject — the results of a survey.
+        taskTextTop: `Imagine that you are doing a project on how Zetland teenagers usually spend their weekends. You have found some data on the subject — the results of a survey.
 
 Comment on the survey data and give your opinion on the subject of the project.
 
