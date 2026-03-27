@@ -41,40 +41,31 @@ export const TASK_DATA: TaskMap = {
       {
         id: 1,
         label: "1",
-        taskText: `You have received an email message from your English-speaking pen-friend Ben:
-
-From: Ben
-Subject: Exams
-
-...I'm really tired because we're preparing for our final exams at school. How do you usually get ready for important tests? What helps you feel less stressed before exams? Do you prefer studying alone or with someone else, and why?
-
-Write an email to Ben.
-In your message:
-– answer his questions;
-– ask 3 questions about his plans for the holidays.
-
-Write 100–140 words.
-Remember the rules of email writing.`,
+        taskText: `You have received an email message from your English-speaking pen-friend Charles: 
+        
+        Write an email to Charles.
+        In your message: 
+        – answer his questions; 
+        – ask 3 questions about the school trip. 
+        
+        Write 100–140 words. 
+        Remember the rules of email writing.`,
         prompt: `LETTER_CHECK_VARIANT_1`,
         image: letterImage1
       },
       {
         id: 2,
         label: "2",
-        taskText: `You have received an email message from your English-speaking pen-friend Kate:
+        taskText: `You have received an email message from your English-speaking pen-friend George:
 
-From: Kate
-Subject: Free time
+        Write an email to George.
+        In your message:
 
-...I’ve recently started spending less time on social media and more time outdoors. What do you usually do in your free time? How much time do you spend online every day? What hobby would you like to try in the future?
-
-Write an email to Kate.
-In your message:
-– answer her questions;
-– ask 3 questions about her new outdoor activities.
-
-Write 100–140 words.
-Remember the rules of email writing.`,
+        – answer his questions;
+        – ask 3 questions about the youth camp.
+         
+        Write 100 – 140 words.
+        Remember the rules of email writing.`,
         prompt: `LETTER_CHECK_VARIANT_2`,
         image: letterImage2
       }

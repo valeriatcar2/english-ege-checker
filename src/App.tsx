@@ -358,7 +358,22 @@ function TaskView({
 
       <div className="mb-5 rounded-[24px] border border-white/10 bg-white/[0.04] p-5 text-white/78">
         <p className="mb-2 text-xs uppercase tracking-[0.24em] text-white/40">Текст задания</p>
-        <p className="whitespace-pre-line leading-7">{activeVariant.taskText}</p>
+
+        <p className="whitespace-pre-line leading-7">{activeVariant.taskTextTop}</p>
+
+        {activeVariant.image && (
+         <div className="my-5 overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.03] p-3">
+          <img
+            src={activeVariant.image}
+            alt={`Материалы к варианту ${activeVariant.label}`}
+            className="w-full rounded-[16px] object-cover"
+          />
+          </div>
+        )}
+
+        {activeVariant.taskTextBottom && (
+          <p className="whitespace-pre-line leading-7">{activeVariant.taskTextBottom}</p>
+        )}
       </div>
 
       {activeVariant.image && (
