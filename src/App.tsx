@@ -513,7 +513,6 @@ function DemoScoreBlock({ mode }: { mode: Exclude<TaskMode, null> }) {
   );
 }
 
-  
 
 function PlaceholderCard({ text }: PlaceholderCardProps) {
   return (
