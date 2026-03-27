@@ -1,28 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock3, ChevronLeft, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
-
-type TaskMode = "letter" | "essay" | null;
-
-type VariantConfig = {
-  id: number;
-  label: string;
-  taskText: string;
-  prompt: string;
-};
-
-type TaskConfig = {
-  title: string;
-  icon: React.ComponentType<{ className?: string }>;
-  duration: number;
-  placeholder: string;
-  variants: VariantConfig[];
-};
-
-type TaskMap = {
-  letter: TaskConfig;
-  essay: TaskConfig;
-};
+import { TASK_DATA, type TaskMode, type VariantConfig, type TaskConfig } from "./data/tasks";
 
 type ChooseTaskProps = {
   setMode: (mode: TaskMode) => void;
@@ -75,32 +54,6 @@ type AnimatedLettersProps = {
   text: string;
 };
 
-const TASK_DATA: TaskMap = {
-  letter: {
-    title: "Письмо",
-    icon: Mail,
-    duration: 15 * 60,
-    placeholder: "Введите здесь свой ответ на задание по письму...",
-    variants: Array.from({ length: 15 }, (_, index) => ({
-      id: index + 1,
-      label: String(index + 1),
-      taskText: `Вставьте сюда текст задания для письма, вариант ${index + 1}.`,
-      prompt: `Вставьте сюда промпт для проверки письма, вариант ${index + 1}.`
-    }))
-  },
-  essay: {
-    title: "Эссе",
-    icon: FileText,
-    duration: 45 * 60,
-    placeholder: "Введите здесь своё эссе...",
-    variants: Array.from({ length: 15 }, (_, index) => ({
-      id: index + 1,
-      label: String(index + 1),
-      taskText: `Вставьте сюда текст задания для эссе, вариант ${index + 1}.`,
-      prompt: `Вставьте сюда промпт для проверки эссе, вариант ${index + 1}.`
-    }))
-  }
-};
 
 export default function EnglishEGEChecker() {
   return (
@@ -407,6 +360,16 @@ function TaskView({
         <p className="mb-2 text-xs uppercase tracking-[0.24em] text-white/40">Текст задания</p>
         <p className="whitespace-pre-line leading-7">{activeVariant.taskText}</p>
       </div>
+
+      {activeVariant.image && (
+  <div className="mb-5 overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] p-3">
+    <img
+      src={activeVariant.image}
+      alt={`Изображение к заданию, вариант ${activeVariant.label}`}
+      className="w-full rounded-[18px] object-cover"
+    />
+  </div>
+)}
 
       <div className="mb-4">
         <label className="mb-2 block text-sm text-white/60">Поле для ввода ответа</label>
