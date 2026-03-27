@@ -80,36 +80,32 @@ export const TASK_DATA: TaskMap = {
       {
         id: 1,
         label: "1",
-        taskTextTop: `Imagine that you are doing a project on what helped Zetland teenagers the most in preparing for final exams. You have found some data on the subject — the results of a survey.
+        taskTextTop: `Imagine that you are doing a project on why some Zetlanders are not keen on theatre-going. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        Comment on the data in the table and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
 
-Comment on the survey data and give your opinion on the subject of the project.
-
-Write 200–250 words.
-
-Use the following plan:
-– make an opening statement on the subject of the project;
-– select and report 2–3 facts;
-– make 1–2 comparisons where relevant and give your comments;
-– outline a problem that can arise with preparing for final exams and suggest a way of solving it;
-– conclude by giving and explaining your opinion on the importance of preparing well for exams.`,
+        Use the following plan:
+        – make an opening statement on the subject of the project;
+        – select and report 2–3 facts;
+        – make 1–2 comparisons where relevant and give your comments;
+        – outline a problem that can arise with choosing a play to watch at the theatre and suggest a way of solving it;
+        – conclude by giving and explaining your opinion on the importance of theatre-going.`,
         prompt: `ESSAY_CHECK_VARIANT_1`,
         image: essayImage1
       },
       {
         id: 2,
         label: "2",
-        taskTextTop: `Imagine that you are doing a project on how Zetland teenagers usually spend their weekends. You have found some data on the subject — the results of a survey.
-
-Comment on the survey data and give your opinion on the subject of the project.
-
-Write 200–250 words.
-
-Use the following plan:
-– make an opening statement on the subject of the project;
-– select and report 2–3 facts;
-– make 1–2 comparisons where relevant and give your comments;
-– outline a problem that can arise when teenagers plan their weekends and suggest a way of solving it;
-– conclude by giving and explaining your opinion on the importance of having free time.`,
+        taskTextTop: `Imagine that you are doing a project on studying foreign languages in Zetland. You have found some data on the subject – the results оf the opinion polls (see the pie chart below) .
+        Comment on the data in the pie chart and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+        
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that one can face when self-studying a foreign language and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on what matters most in learning a foreign language.`,
         prompt: `ESSAY_CHECK_VARIANT_2`,
         image: essayImage2
       }
