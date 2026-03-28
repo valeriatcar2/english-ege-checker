@@ -120,11 +120,11 @@ function Header() {
   return (
     <div className="mb-10 md:mb-14">
       <div className="mb-4 text-xs uppercase tracking-wide text-white/30">
-        Дипломный проект · МПГУ · 2026
+        Дипломный проект · ИМО МПГУ · 2026
       </div>
-      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2 text-sm text-teal-100/90 backdrop-blur">
+      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2.5 text-base text-teal-100/90 backdrop-blur">
         <Sparkles className="h-4 w-4" />
-        AI-платформа для тренировки письменной части
+        AI-платформа
       </div>
 
       <h1 className="mb-4 text-4xl font-semibold tracking-tight md:text-6xl">
