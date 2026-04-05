@@ -465,7 +465,27 @@ function TaskView({
   </div>
 </div>
 
-      
+<div className="mb-6 rounded-[24px] border border-white/10 bg-black/20 p-5">
+  {activeVariant.taskTextTop && (
+    <div className="mb-5 whitespace-pre-line text-sm leading-7 text-white/85">
+      {activeVariant.taskTextTop}
+    </div>
+  )}
+
+  {activeVariant.image && (
+    <img
+      src={activeVariant.image}
+      alt={`Task ${activeVariant.label}`}
+      className="mb-5 w-full rounded-2xl border border-white/10 object-cover"
+    />
+  )}
+
+  {activeVariant.taskTextBottom && (
+    <div className="whitespace-pre-line text-sm leading-7 text-white/75">
+      {activeVariant.taskTextBottom}
+    </div>
+  )}
+</div>
 
       <div className="mb-4">
         <label className="mb-2 block text-sm text-white/60">Поле для ввода ответа</label>
