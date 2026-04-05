@@ -7,6 +7,16 @@ import letterImage2 from "../assets/letters/letter-2.jpg";
 import letterImage3 from "../assets/letters/letter-3.jpg";
 import letterImage4 from "../assets/letters/letter-4.jpg";
 import letterImage5 from "../assets/letters/letter-5.jpg";
+import letterImage6 from "../assets/letters/letter-6.jpg";
+import letterImage7 from "../assets/letters/letter-7.jpg";
+import letterImage8 from "../assets/letters/letter-8.jpg";
+import letterImage9 from "../assets/letters/letter-9.jpg";
+import letterImage10 from "../assets/letters/letter-10.jpg";
+import letterImage11 from "../assets/letters/letter-11.jpg";
+import letterImage12 from "../assets/letters/letter-12.jpg";
+import letterImage13 from "../assets/letters/letter-13.jpg";
+import letterImage14 from "../assets/letters/letter-14.jpg";
+import letterImage15 from "../assets/letters/letter-15.jpg";
 
 import essayImage1 from "../assets/essays/essay-1.jpg";
 import essayImage2 from "../assets/essays/essay-2.jpg";
@@ -112,8 +122,161 @@ export const TASK_DATA: TaskMap = {
         prompt: `LETTER_CHECK_VARIANT_5`,
         image: letterImage5
       },
+      {
+        id: 6,
+        label: "6",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Olivia:`, 
+        taskTextBottom: `Write an email to Olivia.
+        In your message:
+        - answer her questions;
+        - ask 3 questions about her school exams.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_6`,
+        image: letterImage6
+      },
+      {
+        id: 7,
+        label: "7",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Carol:`, 
+        taskTextBottom: `Write an email to Carol.
+        In your message:
+         
+        - answer her questions;
+        - ask 3 questions about the hiking trip.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_7`,
+        image: letterImage7
+      },
+      {
+        id: 8,
+        label: "8",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Oscar:`, 
+        taskTextBottom: `Write an email to Oscar.
+        In your message:
+
+        - answer his questions;
+        - ask 3 questions about the present.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_8`,
+        image: letterImage8
+      },
+      {
+        id: 9,
+        label: "9",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Jack:`, 
+        taskTextBottom: `Write an email to Jack.
+        In your message:
+         
+        - answer his questions;
+        - ask 3 questions about the computer game.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_9`,
+        image: letterImage9
+      },
+      {
+        id: 10,
+        label: "10",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Emily:`, 
+        taskTextBottom: `Write an email to Emily.
+        In your message:
+         
+        - answer her questions;
+        - ask 3 questions about the changes she made in her room.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_10`,
+        image: letterImage10
+      },
+      {
+        id: 11,
+        label: "11",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Patrick:`, 
+        taskTextBottom: `Write an email to Patrick.
+        In your message:
+         
+        - answer his questions;
+        - ask 3 questions about the local environment protection organizations.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_11`,
+        image: letterImage11
+      },
+      {
+        id: 12,
+        label: "12",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Kevin:`, 
+        taskTextBottom: `Write an email to Kevin.
+        In your message:
+         
+        - answer his questions;
+        - ask 3 questions about the film.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_12`,
+        image: letterImage12
+      },
+      {
+        id: 13,
+        label: "13",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Marion:`, 
+        taskTextBottom: `Write an email to Marion.
+        In your message:
+         
+        - answer her questions;
+        - ask 3 questions about the book she has just finished reading.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_13`,
+        image: letterImage13
+      },
+      {
+        id: 14,
+        label: "14",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Simon:`, 
+        taskTextBottom: `Write an email to Simon.
+        In your message:
+         
+        - answer his questions;
+        - ask 3 questions about his school sports club.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_14`,
+        image: letterImage14
+      },
+      {
+        id: 15,
+        label: "15",
+        taskTextTop: `You have received an email message from your English-speaking pen-friend Sandra:`, 
+        taskTextBottom: `Write an email to Sandra.
+        In your message:
+         
+        - answer her questions;
+        - ask 3 questions about her letters to Santa.
+         
+        Write 100–140 words.
+        Remember the rules of email writing.`,
+        prompt: `LETTER_CHECK_VARIANT_15`,
+        image: letterImage15
+      }
     ]
   },
+
+  
+
+  
 
 
 
