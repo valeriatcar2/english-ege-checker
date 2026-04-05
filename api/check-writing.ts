@@ -27,7 +27,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -204,7 +204,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -229,7 +229,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -311,7 +311,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -488,7 +488,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -513,7 +513,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -595,7 +595,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -772,7 +772,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -797,7 +797,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -879,7 +879,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -1056,7 +1056,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -1081,7 +1081,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -1163,7 +1163,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -1340,7 +1340,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -1365,7 +1365,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -1447,7 +1447,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -1624,7 +1624,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -1649,7 +1649,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -1731,7 +1731,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -1908,7 +1908,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -1933,7 +1933,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -2015,7 +2015,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -2192,7 +2192,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -2217,7 +2217,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -2299,7 +2299,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -2476,7 +2476,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -2501,7 +2501,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -2583,7 +2583,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -2760,7 +2760,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -2785,7 +2785,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -2867,7 +2867,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -3044,7 +3044,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -3069,7 +3069,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -3151,7 +3151,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -3328,7 +3328,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -3353,7 +3353,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -3435,7 +3435,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -3612,7 +3612,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -3637,7 +3637,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -3719,7 +3719,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -3896,7 +3896,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -3921,7 +3921,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
@@ -4003,7 +4003,7 @@ Remember the rules of email writing.
 WORD COUNT RULES (STRICT):
 1. Count all words in the student's answer.
 2. If the answer contains fewer than 90 words, give 0 points for ALL criteria.
-3. If the answer contains more than 154 words, evaluate ONLY the first 154 words. Ignore everything after the 154th word.
+3. If the answer contains more than 154 words, the response is still accepted for assessment, but evaluate ONLY the first 140 words. Ignore everything after the 140th word.
 4. Always report:
    - total word count,
    - length status: underlength / acceptable / overlength,
@@ -4180,7 +4180,7 @@ IMPORTANT FOR K3:
 FINAL SCORING LOGIC:
 1. Apply the word count rule first.
 2. If the answer is under 90 words, all scores must be 0.
-3. If the answer is over 154 words, evaluate only the first 154 words.
+3. If the answer is over 154 words, evaluate only the first 140 words.
 4. Evaluate K1.
 5. If K1 = 0, then K2 = 0 and K3 = 0 automatically.
 6. Otherwise evaluate K2 and K3 strictly by the counted errors and thresholds above.
@@ -4205,7 +4205,7 @@ RETURN VALID JSON ONLY:
 {
   "wordCount": 0,
   "lengthStatus": "underlength | acceptable | overlength",
-  "truncatedTo154": false,
+  "truncatedTo140": false,
   "scores": {
     "content": 0,
     "organization": 0,
