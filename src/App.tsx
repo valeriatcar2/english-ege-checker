@@ -128,13 +128,14 @@ function TopBar({ onHomeClick }: TopBarProps) {
         <Sparkles className="h-4 w-4" />
         English ЕГЭ Checker
       </button>
-
       <a
         href="https://vk.com/lera_tsareva"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-sm text-white/60 transition hover:text-teal-200"
+        className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition hover:border-teal-300/30 hover:text-teal-200"
       >
+        <span className="text-white/55">Обратная связь:</span>
+
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
