@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock3, ChevronLeft, ChevronDown, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
+import { Clock3, ChevronLeft, ChevronDown, CheckCircle2, FileText, Mail, Sparkles, Camera, Loader2 } from "lucide-react";
 import {
   TASK_DATA,
   type TaskMode,
@@ -567,6 +567,51 @@ function TaskView({
 }: TaskViewProps) {
   const expired = examMode && timeLeft !== null && timeLeft <= 0;
   const Icon = currentTask.icon;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isOcrLoading, setIsOcrLoading] = useState(false);
+  const [ocrError, setOcrError] = useState("");
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsOcrLoading(true);
+    setOcrError("");
+
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = async () => {
+        const dataUrl = reader.result as string;
+        const base64 = dataUrl.split(",")[1];
+        const mimeType = file.type;
+
+        const response = await fetch("/api/ocr-image", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ imageBase64: base64, mimeType }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data?.error || "OCR failed");
+        }
+
+        setText(data.text);
+        setIsOcrLoading(false);
+      };
+      reader.onerror = () => {
+        setOcrError("Не удалось прочитать файл.");
+        setIsOcrLoading(false);
+      };
+    } catch {
+      setOcrError("Не удалось распознать текст. Попробуйте ещё раз.");
+      setIsOcrLoading(false);
+    }
+
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
 
   return (
     <div>
@@ -666,9 +711,45 @@ function TaskView({
 </div>
 
       <div className="mb-4">
-        <label className="mb-2 block text-sm text-white/60">
-          Поле для ввода ответа
-        </label>
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <label className="block text-sm text-white/60">
+            Поле для ввода ответа
+          </label>
+
+          <div className="flex items-center gap-2">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageUpload}
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isOcrLoading}
+              className="inline-flex items-center gap-2 rounded-full border border-teal-400/20 bg-teal-400/10 px-3 py-1.5 text-xs text-teal-100/90 transition hover:bg-teal-400/20 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isOcrLoading ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Распознаю...
+                </>
+              ) : (
+                <>
+                  <Camera className="h-3.5 w-3.5" />
+                  Загрузить фото
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {ocrError && (
+          <div className="mb-2 rounded-2xl border border-red-400/20 bg-red-500/10 px-4 py-2 text-sm text-red-200">
+            {ocrError}
+          </div>
+        )}
 
         <textarea
           value={text}
