@@ -319,62 +319,75 @@ const handleSubmit = async () => {
   };
 
   return (
-  <>
-    <TopBar onHomeClick={resetAll} />
-    {!mode && <Header />}
+    <>
+      <TopBar onHomeClick={resetAll} />
+      {!mode && <Header />}
 
-    <div className={`grid gap-6 ${showResultsPanel ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-1"}`}>
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-[28px] border border-teal-400/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7"
-      >
-        {!mode ? (
+      {!mode ? (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
           <ChooseTask setMode={handleSelectMode} />
-        ) : !activeVariant && currentTask ? (
-          <ChooseVariant mode={mode} variants={variants} onBack={resetAll} onSelect={handleSelectVariant} />
-        ) : currentTask && activeVariant ? (
-          <TaskView
-            currentTask={currentTask}
-            activeVariant={activeVariant}
-            examMode={examMode}
-            setExamMode={setExamMode}
-            timeLeft={timeLeft}
-            text={text}
-            setText={setText}
-            onBack={resetToVariants}
-            onSubmit={handleSubmit}
-          />
-        ) : null}
-      </motion.section>
-
-      <AnimatePresence>
-        {showResultsPanel && (
-          <motion.aside
-            ref={resultRef}
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 24 }}
-            transition={{ duration: 0.35 }}
+        </motion.div>
+      ) : (
+        <div className={`grid gap-6 ${showResultsPanel ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-1"}`}>
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
             className="rounded-[28px] border border-teal-400/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7"
           >
-            <ResultPanel
-              mode={mode}
-              selectedVariant={activeVariant}
-              submitted={submitted}
-              examMode={examMode}
-              timeLeft={timeLeft}
-              result={result}
-              isChecking={isChecking}
-              error={error}
-            />
-          </motion.aside>
-        )}
-      </AnimatePresence>
-    </div>
-  </>
-);
+            {!activeVariant && currentTask ? (
+              <ChooseVariant
+                mode={mode}
+                variants={variants}
+                onBack={resetAll}
+                onSelect={handleSelectVariant}
+              />
+            ) : currentTask && activeVariant ? (
+              <TaskView
+                currentTask={currentTask}
+                activeVariant={activeVariant}
+                examMode={examMode}
+                setExamMode={setExamMode}
+                timeLeft={timeLeft}
+                text={text}
+                setText={setText}
+                onBack={resetToVariants}
+                onSubmit={handleSubmit}
+              />
+            ) : null}
+          </motion.section>
+
+          <AnimatePresence>
+            {showResultsPanel && (
+              <motion.aside
+                ref={resultRef}
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 24 }}
+                transition={{ duration: 0.3 }}
+                className="rounded-[28px] border border-teal-400/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7"
+              >
+                <ResultPanel
+                  mode={mode}
+                  selectedVariant={activeVariant}
+                  submitted={submitted}
+                  examMode={examMode}
+                  timeLeft={timeLeft}
+                  result={result}
+                  isChecking={isChecking}
+                  error={error}
+                />
+              </motion.aside>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
+    </>
+  );
 }
 
 function ChooseTask({ setMode }: ChooseTaskProps) {
@@ -422,8 +435,8 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="rounded-[28px] border border-teal-400/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7">
+    <>
+      <section className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-xl shadow-black/10 backdrop-blur-md md:p-7">
         <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
         <h2 className="mb-3 text-2xl font-semibold md:text-3xl">Выберите тип задания</h2>
 
@@ -441,9 +454,9 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
             onClick={() => setMode("essay")}
           />
         </div>
-      </div>
+      </section>
 
-      <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-xl md:p-7">
+      <section className="mt-14 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-xl shadow-black/10 backdrop-blur-md md:mt-16 md:p-7">
         <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">FAQ</p>
         <h2 className="mb-5 text-2xl font-semibold md:text-3xl">Часто задаваемые вопросы</h2>
 
@@ -470,40 +483,41 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
                 </button>
 
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+                    isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="overflow-hidden">
-                    <div className="px-4 pb-4 text-sm leading-7 text-white/65">
-                      {item.answer}
-                    </div>
+                  <div className="px-4 pb-4 text-sm leading-7 text-white/65">
+                    {item.answer}
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
 
 function TaskCard({ title, subtitle, icon: Icon, onClick }: TaskCardProps) {
   return (
     <motion.button
-      whileHover={{ y: -2, scale: 1.01 }}
-      whileTap={{ scale: 0.995 }}
-      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      whileHover={{ y: -1, scale: 1.005 }}
+      whileTap={{ scale: 0.998 }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
       onClick={onClick}
-      className="group rounded-[24px] border border-teal-400/12 bg-gradient-to-br from-teal-400/10 to-white/[0.03] p-6 text-left"
+      className="group rounded-[24px] border border-white/10 bg-white/[0.02] p-6 text-left transition-colors hover:bg-white/[0.04]"
     >
-      <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-400/15 bg-teal-400/10">
+      <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03]">
         <Icon className="h-5 w-5 text-white/90" />
       </div>
+
       <h3 className="mb-2 text-xl font-medium">{title}</h3>
       <p className="text-sm leading-6 text-white/60">{subtitle}</p>
-      <div className="mt-6 text-sm text-white/45 transition group-hover:text-teal-200">Открыть →</div>
+      <div className="mt-6 text-sm text-white/45 transition group-hover:text-teal-200">
+        Открыть →
+      </div>
     </motion.button>
   );
 }
