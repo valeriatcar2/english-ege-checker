@@ -554,7 +554,7 @@ function ResultPanel({
       {!mode || !selectedVariant ? (
         <PlaceholderCard text="Сначала откройте конкретный вариант задания." />
       ) : isChecking ? (
-            <div className="flex h-full min-h-[300px] flex-col items-center justify-center rounded-[24px] border border-white/10 bg-white/5 px-6 text-center">
+            <div className="flex min-h-[300px] max-h-[calc(100vh-160px)] flex-col items-center justify-center rounded-[24px] border border-white/10 bg-white/5 px-6 text-center overflow-y-auto">
               <div className="mb-4 h-10 w-10 animate-spin rounded-full border-4 border-white/15 border-t-teal-300"></div>
               <p className="text-base font-medium text-white">Идёт проверка работы...</p>
               <p className="mt-2 text-sm text-white/50">Пожалуйста, подождите несколько секунд</p>
