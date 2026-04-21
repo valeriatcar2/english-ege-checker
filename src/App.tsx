@@ -1057,6 +1057,21 @@ function AnimatedLetters({ text }: AnimatedLettersProps) {
   );
 }
 
+const SPARKLE_POSITIONS = [
+  { top: "8%",  left: "12%", duration: 3.2, delay: 0 },
+  { top: "15%", left: "78%", duration: 4.1, delay: 1.1 },
+  { top: "32%", left: "5%",  duration: 3.7, delay: 0.6 },
+  { top: "28%", left: "91%", duration: 5.0, delay: 2.0 },
+  { top: "55%", left: "22%", duration: 4.4, delay: 0.3 },
+  { top: "62%", left: "65%", duration: 3.5, delay: 1.7 },
+  { top: "75%", left: "88%", duration: 4.8, delay: 0.9 },
+  { top: "82%", left: "38%", duration: 3.9, delay: 1.4 },
+  { top: "45%", left: "50%", duration: 4.2, delay: 2.5 },
+  { top: "90%", left: "15%", duration: 3.3, delay: 0.5 },
+  { top: "18%", left: "45%", duration: 5.2, delay: 1.8 },
+  { top: "70%", left: "55%", duration: 4.0, delay: 3.1 },
+];
+
 function AnimatedBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -1078,6 +1093,18 @@ function AnimatedBackground() {
         style={{ willChange: "transform" }}
         className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-teal-200/[0.07] blur-3xl"
       />
+
+      {SPARKLE_POSITIONS.map((s, i) => (
+        <motion.div
+          key={i}
+          animate={{ opacity: [0.04, 0.13, 0.04] }}
+          transition={{ duration: s.duration, repeat: Infinity, delay: s.delay, ease: "easeInOut" }}
+          style={{ top: s.top, left: s.left, willChange: "opacity" }}
+          className="absolute"
+        >
+          <Sparkles className="h-3 w-3 text-teal-300" />
+        </motion.div>
+      ))}
     </div>
   );
 }
