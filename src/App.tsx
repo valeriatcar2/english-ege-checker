@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock3, ChevronLeft, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
 import {
@@ -139,6 +139,7 @@ function Header() {
 }
 
 function CheckerDemo() {
+  const resultRef = useRef<HTMLDivElement | null>(null);
   const [mode, setMode] = useState<TaskMode>(null);
   const [selectedVariantId, setSelectedVariantId] = useState<number | null>(null);
   const [examMode, setExamMode] = useState(false);
@@ -182,6 +183,11 @@ function CheckerDemo() {
 const handleSubmit = async () => {
   if (examMode && timeLeft !== null && timeLeft <= 0) return;
   if (!activeVariant || !text.trim()) return;
+
+  resultRef.current?.scrollIntoView({
+  behavior: "smooth",
+  block: "start",
+});
 
   try {
     setIsChecking(true);
@@ -291,6 +297,7 @@ const handleSubmit = async () => {
       <AnimatePresence>
         {showResultsPanel && (
           <motion.aside
+            ref={resultRef}
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 24 }}
