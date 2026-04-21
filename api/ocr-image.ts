@@ -36,13 +36,13 @@ export default async function handler(req: Request): Promise<Response> {
               type: "image_url",
               image_url: {
                 url: `data:${mimeType};base64,${imageBase64}`,
-                detail: "high",
+                detail: "low",
               },
             },
           ],
         },
       ],
-      max_tokens: 2000,
+      max_tokens: 800,
     });
 
     const extractedText = response.choices[0]?.message?.content ?? "";
