@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/ocr-image.ts": {
+      "maxDuration": 60
+    },
+    "api/check-writing.ts": {
+      "maxDuration": 60
+    }
+  }
+}
