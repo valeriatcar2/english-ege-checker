@@ -1058,20 +1058,20 @@ function AnimatedLetters({ text }: AnimatedLettersProps) {
 }
 
 const SPARKLE_POSITIONS = [
-  { top: "8%",  left: "12%", duration: 2.8, delay: 0,   size: 5 },
-  { top: "15%", left: "78%", duration: 3.6, delay: 1.1, size: 4 },
-  { top: "32%", left: "5%",  duration: 3.2, delay: 0.6, size: 6 },
-  { top: "28%", left: "91%", duration: 4.5, delay: 2.0, size: 4 },
-  { top: "55%", left: "22%", duration: 3.8, delay: 0.3, size: 5 },
-  { top: "62%", left: "65%", duration: 2.9, delay: 1.7, size: 4 },
-  { top: "75%", left: "88%", duration: 4.2, delay: 0.9, size: 6 },
-  { top: "82%", left: "38%", duration: 3.4, delay: 1.4, size: 4 },
-  { top: "45%", left: "50%", duration: 3.7, delay: 2.5, size: 5 },
-  { top: "90%", left: "15%", duration: 2.6, delay: 0.5, size: 4 },
-  { top: "18%", left: "45%", duration: 4.8, delay: 1.8, size: 5 },
-  { top: "70%", left: "55%", duration: 3.1, delay: 3.1, size: 4 },
-  { top: "5%",  left: "55%", duration: 3.9, delay: 0.8, size: 5 },
-  { top: "48%", left: "82%", duration: 2.7, delay: 2.2, size: 4 },
+  { top: "8%",  left: "12%", duration: 2.8, delay: 0,   size: 9  },
+  { top: "15%", left: "78%", duration: 3.6, delay: 1.1, size: 7  },
+  { top: "32%", left: "5%",  duration: 3.2, delay: 0.6, size: 11 },
+  { top: "28%", left: "91%", duration: 4.5, delay: 2.0, size: 7  },
+  { top: "55%", left: "22%", duration: 3.8, delay: 0.3, size: 9  },
+  { top: "62%", left: "65%", duration: 2.9, delay: 1.7, size: 7  },
+  { top: "75%", left: "88%", duration: 4.2, delay: 0.9, size: 10 },
+  { top: "82%", left: "38%", duration: 3.4, delay: 1.4, size: 7  },
+  { top: "45%", left: "50%", duration: 3.7, delay: 2.5, size: 9  },
+  { top: "90%", left: "15%", duration: 2.6, delay: 0.5, size: 7  },
+  { top: "18%", left: "45%", duration: 4.8, delay: 1.8, size: 8  },
+  { top: "70%", left: "55%", duration: 3.1, delay: 3.1, size: 7  },
+  { top: "5%",  left: "55%", duration: 3.9, delay: 0.8, size: 9  },
+  { top: "48%", left: "82%", duration: 2.7, delay: 2.2, size: 7  },
 ];
 
 function TwinkleStar({ size }: { size: number }) {
@@ -1110,10 +1110,15 @@ function AnimatedBackground() {
       {SPARKLE_POSITIONS.map((s, i) => (
         <motion.div
           key={i}
-          animate={{ opacity: [0, 0.55, 0], scale: [0.6, 1, 0.6] }}
+          animate={{ opacity: [0, 0.75, 0], scale: [0.5, 1, 0.5] }}
           transition={{ duration: s.duration, repeat: Infinity, delay: s.delay, ease: "easeInOut" }}
-          style={{ top: s.top, left: s.left, willChange: "opacity, transform" }}
-          className="absolute text-teal-200"
+          style={{
+            top: s.top,
+            left: s.left,
+            willChange: "opacity, transform",
+            filter: "drop-shadow(0 0 6px rgb(153 246 228 / 0.9)) drop-shadow(0 0 12px rgb(94 234 212 / 0.5))",
+          }}
+          className="absolute text-teal-100"
         >
           <TwinkleStar size={s.size} />
         </motion.div>
