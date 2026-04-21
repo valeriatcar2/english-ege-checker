@@ -487,6 +487,18 @@ function TaskView({
   )}
 </div>
 
+<div className="mt-4 text-[11px] text-white/40">
+  Источник:{" "}
+  <a
+    href="https://ege.fipi.ru/bank/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline hover:text-white/70 transition"
+  >
+    ФИПИ
+  </a>
+</div>
+
       <div className="mb-4">
         <label className="mb-2 block text-sm text-white/60">Поле для ввода ответа</label>
         <textarea
