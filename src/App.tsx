@@ -153,6 +153,34 @@ function Header() {
       <p className="max-w-2xl text-base leading-7 text-white/70 md:text-lg">
         Проверка письменной части ЕГЭ по английскому языку 2026
       </p>
+      
+      <div className="mt-6 max-w-3xl rounded-[24px] border border-white/10 bg-white/[0.03] p-5 text-sm leading-7 text-white/70">
+        <p className="mb-3 text-white font-medium">
+          Добро пожаловать в English ЕГЭ Checker!
+        </p>
+
+        <p className="mb-3">
+          На этой платформе вы сможете выполнять задания письменной части ЕГЭ по английскому языку, актуальные на 2026 год, получать автоматическую проверку с помощью искусственного интеллекта и рекомендации по улучшению своей работы.
+        </p>
+
+        <p className="mb-4">
+          Надеемся, что платформа поможет вам увереннее готовиться к экзамену и шаг за шагом совершенствовать свои письменные навыки.
+        </p>
+
+        <div className="flex flex-wrap items-center gap-2 text-white/60">
+          <span className="font-medium">Обратная связь:</span>
+
+          <a
+            href="https://vk.com/lera_tsareva"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-teal-200 hover:text-teal-100 transition"
+          >
+            <span>VK</span>
+            <span>Валерия Царёва</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
