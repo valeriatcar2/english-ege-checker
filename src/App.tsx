@@ -378,6 +378,48 @@ const handleSubmit = async () => {
 }
 
 function ChooseTask({ setMode }: ChooseTaskProps) {
+  const [openFaq, setOpenFaq] = useState<number[]>([]);
+
+  const faqItems = [
+    {
+      question: "Насколько эффективна платформа?",
+      answer:
+        "Платформа помогает тренировать навыки выполнения заданий письменной части ЕГЭ по английскому языку, получать быструю обратную связь и видеть рекомендации по улучшению работы. Она особенно полезна для регулярной практики, самопроверки и подготовки к экзамену в удобном формате.",
+    },
+    {
+      question: "Собираете ли вы мои данные?",
+      answer:
+        "Нет. Все работы проверяются анонимно. Платформа не запрашивает у вас персональные данные и не требует регистрации для выполнения заданий.",
+    },
+    {
+      question: "Актуальны ли задания и критерии проверки на этот год?",
+      answer:
+        "Да. Задания соответствуют актуальным материалам ФИПИ на 2026 год, а проверка производится с учётом действующих критериев оценивания письменной части ЕГЭ по английскому языку.",
+    },
+    {
+      question: "Можно ли использовать платформу для самостоятельной подготовки?",
+      answer:
+        "Да. Платформа подходит для самостоятельной тренировки, поскольку позволяет выполнять задания, получать автоматическую проверку и отслеживать, на какие аспекты письменной работы стоит обратить особое внимание.",
+    },
+    {
+      question: "Проверяет ли платформа письмо и эссе одинаково?",
+      answer:
+        "Нет. Для личного письма и эссе используются разные параметры оценивания, соответствующие требованиям каждого формата.",
+    },
+    {
+      question: "Можно ли полностью полагаться на результат проверки?",
+      answer:
+        "Платформа даёт полезную и быструю обратную связь, однако её лучше использовать как инструмент поддержки в подготовке. Для максимального результата рекомендуется сочетать работу с платформой с самостоятельным анализом и, при необходимости, консультацией учителя.",
+    },
+  ];
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq((prev) =>
+      prev.includes(index)
+        ? prev.filter((item) => item !== index)
+        : [...prev, index]
+    );
+  };
   return (
     <div>
       <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
@@ -396,6 +438,49 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
           icon={FileText}
           onClick={() => setMode("essay")}
         />
+      </div>
+      <div className="mt-8 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-xl">
+        <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">
+          FAQ
+        </p>
+
+        <h2 className="mb-5 text-2xl font-semibold">
+          Часто задаваемые вопросы
+        </h2>
+
+        <div className="space-y-3">
+          {faqItems.map((item, index) => {
+            const isOpen = openFaq.includes(index);
+
+            return (
+              <div
+                key={index}
+                className="rounded-2xl border border-white/10 bg-white/[0.02]"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="flex w-full items-center justify-between px-4 py-4 text-left text-white transition hover:bg-white/[0.03]"
+                >
+                  <span className="pr-4 font-medium">{item.question}</span>
+
+                  <span
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div className="px-4 pb-4 text-sm leading-7 text-white/65">
+                    {item.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
