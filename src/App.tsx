@@ -571,6 +571,23 @@ function TaskView({
   const [isOcrLoading, setIsOcrLoading] = useState(false);
   const [ocrError, setOcrError] = useState("");
 
+  const resizeImage = (file: File, maxSize: number): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext("2d")!.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL("image/jpeg", 0.85).split(",")[1]);
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -579,38 +596,27 @@ function TaskView({
     setOcrError("");
 
     try {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = async () => {
-        const dataUrl = reader.result as string;
-        const base64 = dataUrl.split(",")[1];
-        const mimeType = file.type;
+      const base64 = await resizeImage(file, 1200);
 
-        const response = await fetch("/api/ocr-image", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ imageBase64: base64, mimeType }),
-        });
+      const response = await fetch("/api/ocr-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageBase64: base64, mimeType: "image/jpeg" }),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (!response.ok) {
-          throw new Error(data?.error || "OCR failed");
-        }
+      if (!response.ok) {
+        throw new Error(data?.error || "OCR failed");
+      }
 
-        setText(data.text);
-        setIsOcrLoading(false);
-      };
-      reader.onerror = () => {
-        setOcrError("Не удалось прочитать файл.");
-        setIsOcrLoading(false);
-      };
+      setText(data.text);
     } catch {
       setOcrError("Не удалось распознать текст. Попробуйте ещё раз.");
+    } finally {
       setIsOcrLoading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
-
-    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   return (
