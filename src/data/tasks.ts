@@ -20,6 +20,19 @@ import letterImage15 from "../assets/letters/letter-15.jpg";
 
 import essayImage1 from "../assets/essays/essay-1.jpg";
 import essayImage2 from "../assets/essays/essay-2.jpg";
+import essayImage3 from "../assets/essays/essay-3.jpg";
+import essayImage4 from "../assets/essays/essay-4.jpg";
+import essayImage5 from "../assets/essays/essay-5.jpg";
+import essayImage6 from "../assets/essays/essay-6.jpg";
+import essayImage7 from "../assets/essays/essay-7.jpg";
+import essayImage8 from "../assets/essays/essay-8.jpg";
+import essayImage9 from "../assets/essays/essay-9.jpg";
+import essayImage10 from "../assets/essays/essay-10.jpg";
+import essayImage11 from "../assets/essays/essay-11.jpg";
+import essayImage12 from "../assets/essays/essay-12.jpg";
+import essayImage13 from "../assets/essays/essay-13.jpg";
+import essayImage14 from "../assets/essays/essay-14.jpg";
+import essayImage15 from "../assets/essays/essay-15.jpg";
 
 export type TaskMode = "letter" | "essay" | null;
 
@@ -323,8 +336,38 @@ export const TASK_DATA: TaskMap = {
         prompt: `ESSAY_CHECK_VARIANT_2`,
         image: essayImage2
       },
-      
+      {
+        id: 3,
+        label: "3",
+        taskTextTop: `Imagine that you are doing a project on what environmental problems Zetland teenagers consider to be the most dangerous. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        Comment on the data in the table and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
 
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant;
+        –  outline a problem that can arise with the environment in your region and suggest a way of solving it;
+        –  conclude by giving your opinion on the importance of environmental protection for teenagers.`,
+        prompt: `ESSAY_CHECK_VARIANT_3`,
+        image: essayImage3
+      },      
+      {
+        id: 4,
+        label: "4",
+        taskTextTop: `magine that you are doing a project on what is most important about the New Year celebration for Zetlanders. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        Comment on the data in the diagram and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        – make an opening statement on the subject of the project;
+        – select and report 2–3 facts;
+        – make 1–2 comparisons where relevant;
+        – outline a problem that can arise with celebrating the New Year and suggest a way of solving it;
+        – conclude by giving your opinion on the importance of family celebrations in our lives.`,
+        prompt: `ESSAY_CHECK_VARIANT_4`,
+        image: essayImage4
+      },
     ]
   }
 };
