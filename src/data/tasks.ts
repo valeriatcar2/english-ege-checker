@@ -307,7 +307,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 1,
         label: "1",
-        taskTextTop: `Imagine that you are doing a project on why some Zetlanders are not keen on theatre-going. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on why some Zetlanders are not keen on theatre-going. You have found some data on the subject – the results of the opinion polls (see the table below).
         Comment on the data in the table and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -323,7 +323,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 2,
         label: "2",
-        taskTextTop: `Imagine that you are doing a project on studying foreign languages in Zetland. You have found some data on the subject – the results оf the opinion polls (see the pie chart below) .
+        taskTextTop: `Imagine that you are doing a project on studying foreign languages in Zetland. You have found some data on the subject – the results оf the opinion polls (see the pie chart below).
         Comment on the data in the pie chart and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -339,7 +339,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 3,
         label: "3",
-        taskTextTop: `Imagine that you are doing a project on what environmental problems Zetland teenagers consider to be the most dangerous. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on what environmental problems Zetland teenagers consider to be the most dangerous. You have found some data on the subject – the results of the opinion polls (see the table below).
         Comment on the data in the table and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -355,7 +355,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 4,
         label: "4",
-        taskTextTop: `Imagine that you are doing a project on what is most important about the New Year celebration for Zetlanders. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        taskTextTop: `Imagine that you are doing a project on what is most important about the New Year celebration for Zetlanders. You have found some data on the subject – the results of the opinion polls (see the diagram below).
         Comment on the data in the diagram and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -371,7 +371,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 5,
         label: "5",
-        taskTextTop: `Imagine that you are doing a project on what literary genres are popular among teenagers in Zetland. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on what literary genres are popular among teenagers in Zetland. You have found some data on the subject – the results of the opinion polls (see the table below).
         Comment on the data in the table and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -387,7 +387,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 6,
         label: "6",
-        taskTextTop: `Imagine that you are doing a project on why people in Zetland do sports. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        taskTextTop: `Imagine that you are doing a project on why people in Zetland do sports. You have found some data on the subject – the results of the opinion polls (see the diagram below).
         Comment on the data in the diagram and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -403,7 +403,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 7,
         label: "7",
-        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose a military career. You have found some data on the subject – the results of a survey (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose a military career. You have found some data on the subject – the results of a survey (see the table below).
         Comment on the survey data and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -420,7 +420,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 8,
         label: "8",
-        taskTextTop: `Imagine that you are doing a project on Zetlanders’ summer trips. You have found some data on the subject – the results оf a survey (see the pie chart below) .
+        taskTextTop: `Imagine that you are doing a project on Zetlanders’ summer trips. You have found some data on the subject – the results оf a survey (see the pie chart below).
         Comment on the survey data and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -436,7 +436,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 9,
         label: "9",
-        taskTextTop: `Imagine that you are doing a project on how teenagers relax after a busy day in Zetland. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on how teenagers relax after a busy day in Zetland. You have found some data on the subject – the results of the opinion polls (see the table below).
         Comment on the data in the table and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -452,7 +452,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 10,
         label: "10",
-        taskTextTop: `Imagine that you are doing a project on why people should study literature in Zetland. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        taskTextTop: `Imagine that you are doing a project on why people should study literature in Zetland. You have found some data on the subject – the results of the opinion polls (see the diagram below).
         Comment on the data in the diagram and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -468,7 +468,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 11,
         label: "11",
-        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose to major in agricultural sciences. You have found some data on the subject – the results of a survey (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose to major in agricultural sciences. You have found some data on the subject – the results of a survey (see the table below).
         Comment on the survey data and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -484,7 +484,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 12,
         label: "12",
-        taskTextTop: `Imagine that you are doing a project on Zetland teenagers’ preparation for final exams. You have found some data on the subject – the results of a survey (see the pie chart below) .
+        taskTextTop: `Imagine that you are doing a project on Zetland teenagers’ preparation for final exams. You have found some data on the subject – the results of a survey (see the pie chart below).
         Comment on the survey data and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -500,7 +500,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 13,
         label: "13",
-        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose to major in technical studies. You have found some data on the subject – the results of a survey (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose to major in technical studies. You have found some data on the subject – the results of a survey (see the table below).
         Comment on the survey data and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -532,7 +532,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 15,
         label: "15",
-        taskTextTop: `Imagine that you are doing a project on what career development activities are popular among Zetland young people. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        taskTextTop: `Imagine that you are doing a project on what career development activities are popular among Zetland young people. You have found some data on the subject – the results of the opinion polls (see the table below).
         Comment on the data in the table and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
