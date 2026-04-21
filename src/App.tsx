@@ -1058,19 +1058,32 @@ function AnimatedLetters({ text }: AnimatedLettersProps) {
 }
 
 const SPARKLE_POSITIONS = [
-  { top: "8%",  left: "12%", duration: 3.2, delay: 0 },
-  { top: "15%", left: "78%", duration: 4.1, delay: 1.1 },
-  { top: "32%", left: "5%",  duration: 3.7, delay: 0.6 },
-  { top: "28%", left: "91%", duration: 5.0, delay: 2.0 },
-  { top: "55%", left: "22%", duration: 4.4, delay: 0.3 },
-  { top: "62%", left: "65%", duration: 3.5, delay: 1.7 },
-  { top: "75%", left: "88%", duration: 4.8, delay: 0.9 },
-  { top: "82%", left: "38%", duration: 3.9, delay: 1.4 },
-  { top: "45%", left: "50%", duration: 4.2, delay: 2.5 },
-  { top: "90%", left: "15%", duration: 3.3, delay: 0.5 },
-  { top: "18%", left: "45%", duration: 5.2, delay: 1.8 },
-  { top: "70%", left: "55%", duration: 4.0, delay: 3.1 },
+  { top: "8%",  left: "12%", duration: 2.8, delay: 0,   size: 5 },
+  { top: "15%", left: "78%", duration: 3.6, delay: 1.1, size: 4 },
+  { top: "32%", left: "5%",  duration: 3.2, delay: 0.6, size: 6 },
+  { top: "28%", left: "91%", duration: 4.5, delay: 2.0, size: 4 },
+  { top: "55%", left: "22%", duration: 3.8, delay: 0.3, size: 5 },
+  { top: "62%", left: "65%", duration: 2.9, delay: 1.7, size: 4 },
+  { top: "75%", left: "88%", duration: 4.2, delay: 0.9, size: 6 },
+  { top: "82%", left: "38%", duration: 3.4, delay: 1.4, size: 4 },
+  { top: "45%", left: "50%", duration: 3.7, delay: 2.5, size: 5 },
+  { top: "90%", left: "15%", duration: 2.6, delay: 0.5, size: 4 },
+  { top: "18%", left: "45%", duration: 4.8, delay: 1.8, size: 5 },
+  { top: "70%", left: "55%", duration: 3.1, delay: 3.1, size: 4 },
+  { top: "5%",  left: "55%", duration: 3.9, delay: 0.8, size: 5 },
+  { top: "48%", left: "82%", duration: 2.7, delay: 2.2, size: 4 },
 ];
+
+function TwinkleStar({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M5 0 C5 0 5.3 3.5 5.5 4.5 C6.5 4.7 10 5 10 5 C10 5 6.5 5.3 5.5 5.5 C5.3 6.5 5 10 5 10 C5 10 4.7 6.5 4.5 5.5 C3.5 5.3 0 5 0 5 C0 5 3.5 4.7 4.5 4.5 C4.7 3.5 5 0 5 0 Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
 function AnimatedBackground() {
   return (
@@ -1097,12 +1110,12 @@ function AnimatedBackground() {
       {SPARKLE_POSITIONS.map((s, i) => (
         <motion.div
           key={i}
-          animate={{ opacity: [0.04, 0.13, 0.04] }}
+          animate={{ opacity: [0, 0.55, 0], scale: [0.6, 1, 0.6] }}
           transition={{ duration: s.duration, repeat: Infinity, delay: s.delay, ease: "easeInOut" }}
-          style={{ top: s.top, left: s.left, willChange: "opacity" }}
-          className="absolute"
+          style={{ top: s.top, left: s.left, willChange: "opacity, transform" }}
+          className="absolute text-teal-200"
         >
-          <Sparkles className="h-3 w-3 text-teal-300" />
+          <TwinkleStar size={s.size} />
         </motion.div>
       ))}
     </div>
