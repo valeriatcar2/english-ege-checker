@@ -2,6 +2,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  timeout: 50000,
 });
 
 export default async function handler(req: Request): Promise<Response> {
@@ -22,6 +23,13 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
+    if (imageBase64.length < 100) {
+      return new Response(JSON.stringify({ error: "Image is empty or too small" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     const response = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
@@ -30,7 +38,7 @@ export default async function handler(req: Request): Promise<Response> {
           content: [
             {
               type: "text",
-              text: "This is a photo of a handwritten English essay or letter by a student. Please extract ALL the text exactly as written, preserving every word, line break, and paragraph. Do not correct spelling or grammar errors — transcribe exactly what is written. Output only the extracted text, nothing else.",
+              text: "Transcribe all handwritten text from this image exactly as written. Output only the text.",
             },
             {
               type: "image_url",
@@ -52,8 +60,9 @@ export default async function handler(req: Request): Promise<Response> {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.error("OCR error:", err);
-    return new Response(JSON.stringify({ error: "Failed to process image" }), {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("OCR error:", message);
+    return new Response(JSON.stringify({ error: message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
