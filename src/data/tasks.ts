@@ -322,7 +322,9 @@ export const TASK_DATA: TaskMap = {
         –  conclude by giving and explaining your opinion on what matters most in learning a foreign language.`,
         prompt: `ESSAY_CHECK_VARIANT_2`,
         image: essayImage2
-      }
+      },
+      
+
     ]
   }
 };
