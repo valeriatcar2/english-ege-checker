@@ -107,21 +107,33 @@ export default function EnglishEGEChecker() {
     <div className="min-h-screen overflow-hidden bg-neutral-950 text-white selection:bg-teal-300/30 selection:text-white">
       <AnimatedBackground />
       <main className="relative z-10 mx-auto max-w-6xl px-6 py-10 md:px-10 md:py-14">
-        <Header />
         <CheckerDemo />
       </main>
     </div>
   );
 }
 
-function Header() {
+type HeaderProps = {
+  onHomeClick: () => void;
+};
+
+function Header({ onHomeClick }: HeaderProps) {
   const title = "English ЕГЭ Checker";
 
   return (
     <div className="mb-10 md:mb-14">
+      <button
+        onClick={onHomeClick}
+        className="mb-4 inline-flex items-center gap-2 text-sm text-white/45 transition hover:text-teal-200"
+      >
+        <ChevronLeft className="h-4 w-4" />
+        На главную
+      </button>
+
       <div className="mb-4 text-xs uppercase tracking-wide text-white/30">
         Дипломный проект · ИМО МПГУ · 2026
       </div>
+
       <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2.5 text-base text-teal-100/90 backdrop-blur">
         <Sparkles className="h-4 w-4" />
         AI-платформа
@@ -268,6 +280,9 @@ const handleSubmit = async () => {
   };
 
   return (
+  <>
+    <Header onHomeClick={resetAll} />
+
     <div className={`grid gap-6 ${showResultsPanel ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-1"}`}>
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -318,7 +333,8 @@ const handleSubmit = async () => {
         )}
       </AnimatePresence>
     </div>
-  );
+  </>
+);
 }
 
 function ChooseTask({ setMode }: ChooseTaskProps) {
