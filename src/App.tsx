@@ -678,7 +678,7 @@ function TaskView({
         />
 
         {!examMode && (
-          <div className="mt-3 text-right text-sm text-white/50">
+          <div className="mt-3 text-left text-sm text-white/50">
             Words:{" "}
             <span className="font-medium text-white/80">
               {text.trim().split(/\s+/).filter(Boolean).length}
@@ -692,8 +692,8 @@ function TaskView({
           {examMode
             ? expired
               ? "Время вышло — отправка отключена."
-              : `Режим экзамена активен: ${Math.floor(currentTask.duration / 60)} минут.`
-            : "Режим экзамена выключен — таймер скрыт."}
+              : `Режим экзамена активен: ${Math.floor(currentTask.duration / 60)} минут. Подсчет слов скрыт`
+            : "Режим экзамена выключен — таймер скрыт, доступен подсчет слов."}
         </div>
 
         <motion.button
