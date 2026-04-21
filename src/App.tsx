@@ -666,13 +666,25 @@ function TaskView({
 </div>
 
       <div className="mb-4">
-        <label className="mb-2 block text-sm text-white/60">Поле для ввода ответа</label>
+        <label className="mb-2 block text-sm text-white/60">
+          Поле для ввода ответа
+        </label>
+
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={currentTask.placeholder}
           className="min-h-[260px] w-full resize-none rounded-[24px] border border-white/10 bg-black/20 px-5 py-4 text-base outline-none transition placeholder:text-white/25 focus:border-white/20 focus:bg-black/30"
         />
+
+        {!examMode && (
+          <div className="mt-3 text-right text-sm text-white/50">
+            Words:{" "}
+            <span className="font-medium text-white/80">
+              {text.trim().split(/\s+/).filter(Boolean).length}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
