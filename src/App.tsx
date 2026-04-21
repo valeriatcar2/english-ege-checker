@@ -1067,27 +1067,20 @@ function AnimatedBackground() {
       <motion.div
         animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "transform" }}
         className="absolute -left-20 top-10 h-80 w-80 rounded-full bg-teal-300/10 blur-3xl"
       />
       <motion.div
         animate={{ x: [0, -30, 0], y: [0, 50, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "transform" }}
         className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-teal-400/[0.08] blur-3xl"
       />
       <motion.div
         animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "transform" }}
         className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-teal-200/[0.07] blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -25, 0], y: [0, 35, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-10 bottom-1/4 h-64 w-64 rounded-full bg-teal-300/[0.06] blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, 30, 0], y: [0, -40, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-1/2 top-3/4 h-56 w-56 rounded-full bg-teal-400/[0.05] blur-3xl"
       />
     </div>
   );
