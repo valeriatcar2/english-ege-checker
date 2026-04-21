@@ -113,23 +113,30 @@ export default function EnglishEGEChecker() {
   );
 }
 
-type HeaderProps = {
+
+type TopBarProps = {
   onHomeClick: () => void;
 };
 
-function Header({ onHomeClick }: HeaderProps) {
+function TopBar({ onHomeClick }: TopBarProps) {
+  return (
+    <div className="mb-6 flex items-center justify-between">
+      <button
+        onClick={onHomeClick}
+        className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition hover:border-teal-300/30 hover:text-teal-200"
+      >
+        <Sparkles className="h-4 w-4" />
+        English ЕГЭ Checker
+      </button>
+    </div>
+  );
+}
+
+function Header() {
   const title = "English ЕГЭ Checker";
 
   return (
     <div className="mb-10 md:mb-14">
-      <button
-        onClick={onHomeClick}
-        className="mb-4 inline-flex items-center gap-2 text-sm text-white/45 transition hover:text-teal-200"
-      >
-        <ChevronLeft className="h-4 w-4" />
-        На главную
-      </button>
-
       <div className="mb-4 text-xs uppercase tracking-wide text-white/30">
         Дипломный проект · ИМО МПГУ · 2026
       </div>
@@ -281,7 +288,8 @@ const handleSubmit = async () => {
 
   return (
   <>
-    <Header onHomeClick={resetAll} />
+    <TopBar onHomeClick={resetAll} />
+    {!mode && <Header />}
 
     <div className={`grid gap-6 ${showResultsPanel ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-1"}`}>
       <motion.section
