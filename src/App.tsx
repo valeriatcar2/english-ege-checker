@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock3, ChevronLeft, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
+import { Clock3, ChevronLeft, ChevronDown, CheckCircle2, FileText, Mail, Sparkles } from "lucide-react";
 import {
   TASK_DATA,
   type TaskMode,
@@ -420,33 +420,32 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
         : [...prev, index]
     );
   };
+
   return (
-    <div>
-      <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
-      <h2 className="mb-2 text-2xl font-semibold md:text-3xl">Выберите тип задания</h2>
+    <div className="space-y-8">
+      <div className="rounded-[28px] border border-teal-400/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7">
+        <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
+        <h2 className="mb-3 text-2xl font-semibold md:text-3xl">Выберите тип задания</h2>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <TaskCard
-          title="Письмо"
-          subtitle="Электронное письмо личного характера"
-          icon={Mail}
-          onClick={() => setMode("letter")}
-        />
-        <TaskCard
-          title="Эссе"
-          subtitle="Аналитическое эссе"
-          icon={FileText}
-          onClick={() => setMode("essay")}
-        />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <TaskCard
+            title="Письмо"
+            subtitle="Электронное письмо личного характера"
+            icon={Mail}
+            onClick={() => setMode("letter")}
+          />
+          <TaskCard
+            title="Эссе"
+            subtitle="Аналитическое эссе"
+            icon={FileText}
+            onClick={() => setMode("essay")}
+          />
+        </div>
       </div>
-      <div className="mt-8 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-xl">
-        <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">
-          FAQ
-        </p>
 
-        <h2 className="mb-5 text-2xl font-semibold">
-          Часто задаваемые вопросы
-        </h2>
+      <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-xl md:p-7">
+        <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">FAQ</p>
+        <h2 className="mb-5 text-2xl font-semibold md:text-3xl">Часто задаваемые вопросы</h2>
 
         <div className="space-y-3">
           {faqItems.map((item, index) => {
@@ -455,7 +454,7 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
             return (
               <div
                 key={index}
-                className="rounded-2xl border border-white/10 bg-white/[0.02]"
+                className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]"
               >
                 <button
                   onClick={() => toggleFaq(index)}
@@ -463,20 +462,24 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
                 >
                   <span className="pr-4 font-medium">{item.question}</span>
 
-                  <span
-                    className={`transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 text-white/55 transition-transform duration-300 ${
+                      isOpen ? "rotate-180 text-teal-200" : ""
                     }`}
-                  >
-                    ▼
-                  </span>
+                  />
                 </button>
 
-                {isOpen && (
-                  <div className="px-4 pb-4 text-sm leading-7 text-white/65">
-                    {item.answer}
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-4 pb-4 text-sm leading-7 text-white/65">
+                      {item.answer}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
