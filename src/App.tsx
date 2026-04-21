@@ -472,22 +472,21 @@ function TaskView({
     </div>
   )}
 
-  {activeVariant.image && (
-    <img
-      src={activeVariant.image}
-      alt={`Task ${activeVariant.label}`}
-      className="mb-5 w-full rounded-2xl border border-white/10 object-cover"
-    />
-  )}
+{activeVariant.image && (
+  <img
+    src={activeVariant.image}
+    alt={`Task ${activeVariant.label}`}
+    className="mb-5 w-full rounded-2xl border border-white/10 object-cover"
+  />
+)}
 
-  {activeVariant.taskTextBottom && (
-    <div className="whitespace-pre-line text-sm leading-7 text-white/75">
-      {activeVariant.taskTextBottom}
-    </div>
-  )}
-</div>
+{activeVariant.taskTextBottom && (
+  <div className="whitespace-pre-line text-sm leading-7 text-white/75">
+    {activeVariant.taskTextBottom}
+  </div>
+)}
 
-<div className="mt-4 text-[11px] text-white/40">
+<div className="mt-5 text-[11px] text-white/40">
   Источник:{" "}
   <a
     href="https://ege.fipi.ru/bank/"
@@ -497,6 +496,8 @@ function TaskView({
   >
     ФИПИ
   </a>
+</div>
+
 </div>
 
       <div className="mb-4">
