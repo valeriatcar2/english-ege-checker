@@ -106,7 +106,7 @@ export default function EnglishEGEChecker() {
   return (
     <div className="min-h-screen overflow-hidden bg-neutral-950 text-white selection:bg-teal-300/30 selection:text-white">
       <AnimatedBackground />
-      <main className="relative z-10 mx-auto max-w-6xl px-6 py-10 md:px-10 md:py-14">
+      <main className="relative z-10 mx-auto max-w-6xl px-6 py-8 md:px-10 md:py-10">
         <CheckerDemo />
       </main>
     </div>
@@ -136,7 +136,7 @@ function Header() {
   const title = "English ЕГЭ Checker";
 
   return (
-    <div className="mb-10 md:mb-14">
+    <div className="mb-6 md:mb-8">
       <div className="mb-4 text-xs uppercase tracking-wide text-white/30">
         Дипломный проект · ИМО МПГУ · 2026
       </div>
@@ -150,16 +150,16 @@ function Header() {
         <AnimatedLetters text={title} />
       </h1>
 
-      <div className="mt-4 max-w-5xl text-base leading-8 text-white/68 md:text-lg">
-        <p className="mb-4">
+      <div className="mt-3 max-w-5xl text-[15px] leading-7 text-white/68 md:text-base">
+        <p className="mb-3">
           Добро пожаловать на платформу English ЕГЭ Checker!
         </p>
 
-        <p className="mb-4">
+        <p className="mb-3">
           На этой платформе вы сможете выполнять задания письменной части ЕГЭ по английскому языку, актуальные на 2026 год, получать автоматическую проверку с помощью искусственного интеллекта и рекомендации по улучшению своей работы.
         </p>
 
-        <p className="mb-4">
+        <p className="mb-3">
           Надеемся, что платформа поможет вам увереннее готовиться к экзамену и шаг за шагом совершенствовать свои письменные навыки.
         </p>
 
@@ -381,8 +381,8 @@ const handleSubmit = async () => {
 function ChooseTask({ setMode }: ChooseTaskProps) {
   return (
     <div>
-      <p className="mb-3 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
-      <h2 className="mb-3 text-2xl font-semibold md:text-3xl">Выберите тип задания</h2>
+      <p className="mb-2 text-sm uppercase tracking-[0.24em] text-white/45">Старт</p>
+      <h2 className="mb-2 text-2xl font-semibold md:text-3xl">Выберите тип задания</h2>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <TaskCard
