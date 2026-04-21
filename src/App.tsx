@@ -153,13 +153,12 @@ function Header() {
       <p className="max-w-2xl text-base leading-7 text-white/70 md:text-lg">
         Проверка письменной части ЕГЭ по английскому языку 2026
       </p>
-      
-      <div className="mt-6 max-w-3xl rounded-[24px] border border-white/10 bg-white/[0.03] p-5 text-sm leading-7 text-white/70">
-        <p className="mb-3 text-white font-medium">
+      <div className="mt-6 max-w-3xl text-base leading-8 text-white/68 md:text-lg">
+        <p className="mb-4">
           Добро пожаловать в English ЕГЭ Checker!
         </p>
 
-        <p className="mb-3">
+        <p className="mb-4">
           На этой платформе вы сможете выполнять задания письменной части ЕГЭ по английскому языку, актуальные на 2026 год, получать автоматическую проверку с помощью искусственного интеллекта и рекомендации по улучшению своей работы.
         </p>
 
@@ -168,16 +167,25 @@ function Header() {
         </p>
 
         <div className="flex flex-wrap items-center gap-2 text-white/60">
-          <span className="font-medium">Обратная связь:</span>
+          <span>Обратная связь:</span>
 
           <a
             href="https://vk.com/lera_tsareva"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-teal-200 hover:text-teal-100 transition"
+            className="inline-flex items-center gap-2 text-teal-200 transition hover:text-teal-100"
           >
-            <span>VK</span>
-            <span>Валерия Царёва</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-4 w-4"
+              aria-hidden="true"
+            >
+              <path d="M12.785 15.14s.288-.032.436-.19c.136-.145.131-.418.131-.418s-.019-1.278.574-1.466c.584-.185 1.333 1.235 2.128 1.781.602.413 1.059.322 1.059.322l2.127-.03s1.112-.069.585-.944c-.043-.072-.306-.645-1.573-1.819-1.326-1.23-1.148-1.031.449-3.16.973-1.297 1.361-2.088 1.239-2.427-.116-.323-.832-.238-.832-.238l-2.395.015s-.178-.024-.309.055c-.128.077-.21.257-.21.257s-.379 1.01-.883 1.87c-1.062 1.814-1.487 1.91-1.661 1.798-.405-.261-.304-1.047-.304-1.605 0-1.744.264-2.471-.514-2.659-.258-.063-.448-.104-1.108-.11-.847-.008-1.564.003-1.969.2-.27.131-.478.423-.351.44.157.021.513.096.701.352.242.33.233 1.07.233 1.07s.138 2.053-.323 2.308c-.316.175-.75-.182-1.683-1.831-.478-.845-.839-1.781-.839-1.781s-.07-.172-.196-.264c-.154-.112-.369-.148-.369-.148l-2.276.015s-.342.01-.467.159c-.111.132-.009.404-.009.404s1.782 4.171 3.799 6.268c1.85 1.923 3.95 1.796 3.95 1.796h.952z" />
+            </svg>
+
+            <span>Валерия Царева</span>
           </a>
         </div>
       </div>
