@@ -22,6 +22,17 @@ import essayImage1 from "../assets/essays/essay-1.jpg";
 import essayImage2 from "../assets/essays/essay-2.jpg";
 import essayImage3 from "../assets/essays/essay-3.jpg";
 import essayImage4 from "../assets/essays/essay-4.jpg";
+import essayImage5 from "../assets/essays/essay-5.jpg";
+import essayImage6 from "../assets/essays/essay-6.jpg";
+import essayImage7 from "../assets/essays/essay-7.jpg";
+import essayImage8 from "../assets/essays/essay-8.jpg";
+import essayImage9 from "../assets/essays/essay-9.jpg";
+import essayImage10 from "../assets/essays/essay-10.jpg";
+import essayImage11 from "../assets/essays/essay-11.jpg";
+import essayImage12 from "../assets/essays/essay-12.jpg";
+import essayImage13 from "../assets/essays/essay-13.jpg";
+import essayImage14 from "../assets/essays/essay-14.jpg";
+import essayImage15 from "../assets/essays/essay-15.jpg";
 
 export type TaskMode = "letter" | "essay" | null;
 
@@ -344,7 +355,7 @@ export const TASK_DATA: TaskMap = {
       {
         id: 4,
         label: "4",
-        taskTextTop: `magine that you are doing a project on what is most important about the New Year celebration for Zetlanders. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        taskTextTop: `Imagine that you are doing a project on what is most important about the New Year celebration for Zetlanders. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
         Comment on the data in the diagram and give your opinion on the subject of the project.`,
         taskTextBottom: `Write 200–250 words.
 
@@ -357,6 +368,183 @@ export const TASK_DATA: TaskMap = {
         prompt: `ESSAY_CHECK_VARIANT_4`,
         image: essayImage4
       },
+      {
+        id: 5,
+        label: "5",
+        taskTextTop: `Imagine that you are doing a project on what literary genres are popular among teenagers in Zetland. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        Comment on the data in the table and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant;
+        –  outline a problem that can arise with reading and suggest a way of solving it;
+        –  conclude by giving your opinion on the importance of reading for teenagers.`,
+        prompt: `ESSAY_CHECK_VARIANT_5`,
+        image: essayImage5
+      },
+      {
+        id: 6,
+        label: "6",
+        taskTextTop: `Imagine that you are doing a project on why people in Zetland do sports. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        Comment on the data in the diagram and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        – make an opening statement on the subject of the project;
+        – select and report 2–3 facts;
+        – make 1–2 comparisons where relevant;
+        – outline a problem that can arise with doing sports and suggest a way of solving it;
+        – conclude by giving your opinion on the importance of doing sports.`,
+        prompt: `ESSAY_CHECK_VARIANT_6`,
+        image: essayImage6
+      },
+      {
+        id: 7,
+        label: "7",
+        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose a military career. You have found some data on the subject – the results of a survey (see the table below) .
+        Comment on the survey data and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise for military academy students in the course of their studies and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on the importance of 
+        developing a strong feeling of national pride in young people.`,
+        prompt: `ESSAY_CHECK_VARIANT_7`,
+        image: essayImage7
+      },
+      {
+        id: 8,
+        label: "8",
+        taskTextTop: `Imagine that you are doing a project on Zetlanders’ summer trips. You have found some data on the subject – the results оf a survey (see the pie chart below) .
+        Comment on the survey data and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise with a beach holiday and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on what the most exciting summer holiday is.`,
+        prompt: `ESSAY_CHECK_VARIANT_8`,
+        image: essayImage8
+      },
+      {
+        id: 9,
+        label: "9",
+        taskTextTop: `Imagine that you are doing a project on how teenagers relax after a busy day in Zetland. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        Comment on the data in the table and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant;
+        –  outline a problem that can arise with having a rest and suggest a way of solving it;
+        –  conclude by giving your opinion on the importance of relaxing well in our life.`,
+        prompt: `ESSAY_CHECK_VARIANT_9`,
+        image: essayImage9
+      },
+      {
+        id: 10,
+        label: "10",
+        taskTextTop: `Imagine that you are doing a project on why people should study literature in Zetland. You have found some data on the subject – the results of the opinion polls (see the diagram below) .
+        Comment on the data in the diagram and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        – make an opening statement on the subject of the project;
+        – select and report 2–3 facts;
+        – make 1–2 comparisons where relevant;
+        – outline a problem that one can face studying literature and suggest a way of solving it;
+        – conclude by giving your opinion on the importance of studying literature in human life.`,
+        prompt: `ESSAY_CHECK_VARIANT_10`,
+        image: essayImage10
+      },
+      {
+        id: 11,
+        label: "11",
+        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose to major in agricultural sciences. You have found some data on the subject – the results of a survey (see the table below) .
+        Comment on the survey data and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise with studying agricultural sciences and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on the importance of agricultural professionals in today’s world.`,
+        prompt: `ESSAY_CHECK_VARIANT_11`,
+        image: essayImage11
+      },
+      {
+        id: 12,
+        label: "12",
+        taskTextTop: `Imagine that you are doing a project on Zetland teenagers’ preparation for final exams. You have found some data on the subject – the results of a survey (see the pie chart below) .
+        Comment on the survey data and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise with preparing for final exams and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on how to prepare for final exams.`,
+        prompt: `ESSAY_CHECK_VARIANT_12`,
+        image: essayImage12
+      },
+      {
+        id: 13,
+        label: "13",
+        taskTextTop: `Imagine that you are doing a project on why many young Zetlanders choose to major in technical studies. You have found some data on the subject – the results of a survey (see the table below) .
+        Comment on the survey data and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise for students of technology upon graduation and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on the importance of choosing the right profession.`,
+        prompt: `ESSAY_CHECK_VARIANT_13`,
+        image: essayImage13
+      },
+      {
+        id: 14,
+        label: "14",
+        taskTextTop: `Imagine that you are doing a project on the young Zetlanders’ values. You have found some data on the subject – the results оf a survey (see the pie chart below) .
+        Comment on the survey data and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise with prioritising values and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on what the most important thing in life is.`,
+        prompt: `ESSAY_CHECK_VARIANT_14`,
+        image: essayImage14
+      },
+      {
+        id: 15,
+        label: "15",
+        taskTextTop: `Imagine that you are doing a project on what career development activities are popular among Zetland young people. You have found some data on the subject – the results of the opinion polls (see the table below) .
+        Comment on the data in the table and give your opinion on the subject of the project.`,
+        taskTextBottom: `Write 200–250 words.
+
+        Use the following plan:
+        –  make an opening statement on the subject of the project;
+        –  select and report 2–3 facts;
+        –  make 1–2 comparisons where relevant and give your comments;
+        –  outline a problem that can arise with choosing a career and suggest a way of solving it;
+        –  conclude by giving and explaining your opinion on how to find a good job.`,
+        prompt: `ESSAY_CHECK_VARIANT_15`,
+        image: essayImage15
+      }
     ]
   }
 };
