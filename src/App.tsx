@@ -141,14 +141,16 @@ function Header() {
         Дипломный проект · ИМО МПГУ · 2026
       </div>
 
-      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2.5 text-base text-teal-100/90 backdrop-blur">
-        <Sparkles className="h-4 w-4" />
-        AI-платформа
-      </div>
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+          <AnimatedLetters text={title} />
+        </h1>
 
-      <h1 className="mb-4 text-4xl font-semibold tracking-tight md:text-6xl">
-        <AnimatedLetters text={title} />
-      </h1>
+        <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2 text-sm text-teal-100/90 backdrop-blur">
+          <Sparkles className="h-4 w-4" />
+          AI-платформа
+        </div>
+      </div>
 
       <div className="mt-3 max-w-5xl text-[15px] leading-7 text-white/68 md:text-base">
         <p className="mb-3">
