@@ -507,10 +507,10 @@ function TaskCard({ title, subtitle, icon: Icon, onClick }: TaskCardProps) {
       whileTap={{ scale: 0.998 }}
       transition={{ duration: 0.18, ease: "easeOut" }}
       onClick={onClick}
-      className="group rounded-[24px] border border-white/10 bg-white/[0.02] p-6 text-left transition-colors hover:bg-white/[0.04]"
+      className="group rounded-[24px] border border-white/10 bg-white/[0.02] p-6 text-left transition-all hover:bg-white/[0.04] hover:border-teal-400/25"
     >
-      <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03]">
-        <Icon className="h-5 w-5 text-white/90" />
+      <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-teal-400/20 bg-teal-400/[0.08] transition-colors group-hover:bg-teal-400/[0.14]">
+        <Icon className="h-7 w-7 text-teal-200" />
       </div>
 
       <h3 className="mb-2 text-xl font-medium">{title}</h3>
@@ -550,6 +550,10 @@ function ChooseVariant({ mode, variants, onBack, onSelect }: ChooseVariantProps)
           </button>
         ))}
       </div>
+
+      <p className="mt-5 text-sm text-white/35 text-center">
+        Нажмите на вариант, чтобы открыть задание
+      </p>
     </div>
   );
 }
@@ -693,6 +697,7 @@ function TaskView({
     src={activeVariant.image}
     alt={`Task ${activeVariant.label}`}
     className="mb-5 w-full rounded-2xl border border-white/10 object-cover"
+    style={{ filter: "invert(1) brightness(0.85)" }}
   />
 )}
 
@@ -1062,17 +1067,27 @@ function AnimatedBackground() {
       <motion.div
         animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-teal-300/10 blur-3xl"
+        className="absolute -left-20 top-10 h-80 w-80 rounded-full bg-teal-300/10 blur-3xl"
       />
       <motion.div
         animate={{ x: [0, -30, 0], y: [0, 50, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-0 top-1/4 h-80 w-80 rounded-full bg-teal-400/[0.08] blur-3xl"
+        className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-teal-400/[0.08] blur-3xl"
       />
       <motion.div
         animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-teal-200/[0.07] blur-3xl"
+        className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-teal-200/[0.07] blur-3xl"
+      />
+      <motion.div
+        animate={{ x: [0, -25, 0], y: [0, 35, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -right-10 bottom-1/4 h-64 w-64 rounded-full bg-teal-300/[0.06] blur-3xl"
+      />
+      <motion.div
+        animate={{ x: [0, 30, 0], y: [0, -40, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-1/2 top-3/4 h-56 w-56 rounded-full bg-teal-400/[0.05] blur-3xl"
       />
     </div>
   );
