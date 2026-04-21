@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock3, ChevronLeft, ChevronDown, CheckCircle2, FileText, Mail, Sparkles, Camera, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronDown, CheckCircle2, FileText, Mail, Sparkles, Camera, Loader2 } from "lucide-react";
 import {
   TASK_DATA,
   type TaskMode,
@@ -337,7 +337,7 @@ const handleSubmit = async () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="rounded-[28px] border border-teal-400/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7"
+            className={`rounded-[28px] border bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7 transition-colors duration-500 ${examMode ? "border-amber-400/25" : "border-teal-400/10"}`}
           >
             {!activeVariant && currentTask ? (
               <ChooseVariant
@@ -623,67 +623,63 @@ function TaskView({
     }
   };
 
+  const progress = currentTask.duration > 0 ? ((timeLeft ?? currentTask.duration) / currentTask.duration) * 100 : 0;
+  const barColor = progress > 50 ? "bg-teal-400/50" : progress > 20 ? "bg-amber-400/60" : "bg-red-400/70";
+
   return (
     <div>
-      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-  <div className="min-w-0">
-    <div className="mb-4 flex flex-wrap items-center gap-3">
-      <button
-        onClick={onBack}
-        className="inline-flex items-center gap-2 text-sm text-white/55 transition hover:text-white"
-      >
-        <ChevronLeft className="h-4 w-4" />
-        К вариантам
-      </button>
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            onClick={onBack}
+            className="inline-flex items-center gap-2 text-sm text-white/55 transition hover:text-white"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            К вариантам
+          </button>
 
-      <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
-        <Icon className="h-4 w-4" />
-        {currentTask.title} · Вариант {activeVariant.label}
+          <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
+            <Icon className="h-4 w-4" />
+            {currentTask.title} · Вариант {activeVariant.label}
+          </div>
+        </div>
+
+        <div className="inline-flex items-center gap-3 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2 text-sm text-teal-100/90">
+          <span>Режим экзамена</span>
+          <button
+            type="button"
+            onClick={() => setExamMode((prev) => !prev)}
+            aria-pressed={examMode}
+            className={`relative h-6 w-11 rounded-full transition-colors ${examMode ? "bg-teal-300" : "bg-white/15"}`}
+          >
+            <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${examMode ? "left-[22px]" : "left-0.5"}`} />
+          </button>
+        </div>
       </div>
-    </div>
 
-    <h2 className="text-2xl font-semibold md:text-3xl">Задание</h2>
-  </div>
+      <AnimatePresence>
+        {examMode && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            className="relative mb-5 h-[3px] w-full rounded-full bg-white/[0.06]"
+          >
+            <div
+              className={`h-full rounded-full transition-all duration-1000 ${barColor}`}
+              style={{ width: `${progress}%` }}
+            />
+            <span
+              className="absolute -top-5 text-[11px] text-white/30 tabular-nums transition-all duration-1000"
+              style={{ left: `${Math.max(0, Math.min(progress, 96))}%`, transform: "translateX(-50%)" }}
+            >
+              {formatTime(timeLeft ?? currentTask.duration)}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-  <div className="flex flex-col items-start gap-3 md:items-end">
-    <div className="inline-flex items-center gap-3 rounded-full border border-teal-400/15 bg-teal-400/10 px-4 py-2 text-sm text-teal-100/90">
-      <span>Режим экзамена</span>
-
-      <button
-        type="button"
-        onClick={() => setExamMode((prev) => !prev)}
-        aria-pressed={examMode}
-        className={`relative h-6 w-11 rounded-full transition-colors ${
-          examMode ? "bg-teal-300" : "bg-white/15"
-        }`}
-      >
-        <span
-          className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${
-            examMode ? "left-[22px]" : "left-0.5"
-          }`}
-        />
-      </button>
-    </div>
-
-    <AnimatePresence>
-      {examMode && (
-        <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm ${
-            expired
-              ? "border-red-400/30 bg-red-500/10 text-red-200"
-              : "border-teal-400/15 bg-teal-400/10 text-teal-100/90"
-          }`}
-        >
-          <Clock3 className="h-4 w-4" />
-          {formatTime(timeLeft ?? currentTask.duration)}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </div>
-</div>
+      <h2 className="mb-6 text-2xl font-semibold md:text-3xl">Задание</h2>
 
 <div className="mb-6 rounded-[24px] border border-white/10 bg-black/20 p-5">
   {activeVariant.taskTextTop && (
