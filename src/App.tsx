@@ -582,7 +582,7 @@ function TaskView({
         canvas.width = Math.round(img.width * scale);
         canvas.height = Math.round(img.height * scale);
         canvas.getContext("2d")!.drawImage(img, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL("image/jpeg", 0.85).split(",")[1]);
+        resolve(canvas.toDataURL("image/jpeg", 0.6).split(",")[1]);
       };
       img.onerror = reject;
       img.src = url;
@@ -596,7 +596,7 @@ function TaskView({
     setOcrError("");
 
     try {
-      const base64 = await resizeImage(file, 1200);
+      const base64 = await resizeImage(file, 600);
 
       const response = await fetch("/api/ocr-image", {
         method: "POST",
