@@ -230,7 +230,6 @@ function CheckerDemo() {
   }, [examMode, timeLeft]);
 
 const handleSubmit = async () => {
-  if (examMode && timeLeft !== null && timeLeft <= 0) return;
   if (!activeVariant || !text.trim()) return;
 
   resultRef.current?.scrollIntoView({
@@ -335,7 +334,7 @@ const handleSubmit = async () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className={`rounded-[28px] border bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7 transition-colors duration-500 ${examMode && !(timeLeft !== null && timeLeft <= 0) ? "border-amber-400/25" : (timeLeft !== null && timeLeft <= 0) ? "border-red-400/30" : "border-teal-400/10"}`}
+            className={`rounded-[28px] border bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7 transition-colors duration-500 ${activeVariant && examMode && !(timeLeft !== null && timeLeft <= 0) ? "border-amber-400/25" : activeVariant && (timeLeft !== null && timeLeft <= 0) ? "border-red-400/30" : "border-teal-400/10"}`}
           >
             {!activeVariant && currentTask ? (
               <ChooseVariant
