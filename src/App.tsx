@@ -571,6 +571,7 @@ function TaskView({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isOcrLoading, setIsOcrLoading] = useState(false);
   const [ocrError, setOcrError] = useState("");
+  const [showOcrNotice, setShowOcrNotice] = useState(false);
 
   const resizeImage = (file: File, maxSize: number): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -595,6 +596,7 @@ function TaskView({
 
     setIsOcrLoading(true);
     setOcrError("");
+    setShowOcrNotice(true);
 
     try {
       const base64 = await resizeImage(file, 600);
@@ -625,6 +627,44 @@ function TaskView({
 
   return (
     <div>
+      <AnimatePresence>
+        {showOcrNotice && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-6 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className="w-full max-w-sm rounded-[24px] border border-teal-400/20 bg-neutral-900 p-6 shadow-2xl"
+            >
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
+                <Camera className="h-3.5 w-3.5" />
+                Распознавание текста
+              </div>
+              <p className="mb-2 font-semibold text-white">
+                Текст распознаётся с помощью ИИ
+              </p>
+              <p className="mb-5 text-sm leading-6 text-white/55">
+                Искусственный интеллект может допускать ошибки при распознавании рукописного текста. Обязательно проверьте результат перед отправкой на проверку.
+              </p>
+              <motion.button
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setShowOcrNotice(false)}
+                className="w-full rounded-full border border-teal-300/20 bg-teal-300 py-2.5 text-sm font-medium text-black transition hover:bg-teal-200"
+              >
+                Понятно
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="mb-5 flex items-center gap-2 sm:gap-3">
         <button
           onClick={onBack}
