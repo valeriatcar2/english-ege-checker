@@ -335,7 +335,7 @@ const handleSubmit = async () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className={`rounded-[28px] border bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7 transition-colors duration-500 ${examMode ? "border-amber-400/25" : "border-teal-400/10"}`}
+            className={`rounded-[28px] border bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl md:p-7 transition-colors duration-500 ${examMode && !(timeLeft !== null && timeLeft <= 0) ? "border-amber-400/25" : (timeLeft !== null && timeLeft <= 0) ? "border-red-400/30" : "border-teal-400/10"}`}
           >
             {!activeVariant && currentTask ? (
               <ChooseVariant
@@ -762,7 +762,8 @@ function TaskView({
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={currentTask.placeholder}
-          className="min-h-[260px] w-full resize-none rounded-[24px] border border-white/10 bg-black/20 px-5 py-4 text-base outline-none transition placeholder:text-white/25 focus:border-white/20 focus:bg-black/30"
+          readOnly={expired}
+          className={`min-h-[260px] w-full resize-none rounded-[24px] border border-white/10 bg-black/20 px-5 py-4 text-base outline-none transition placeholder:text-white/25 focus:border-white/20 focus:bg-black/30 ${expired ? "cursor-not-allowed opacity-60" : ""}`}
         />
 
         {!examMode && (
@@ -775,19 +776,52 @@ function TaskView({
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-3">
-        {expired && <p className="text-sm text-red-300">Время вышло — отправка отключена.</p>}
+      <AnimatePresence>
+        {expired && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 8 }}
+            transition={{ duration: 0.25 }}
+            className="mb-4 rounded-[20px] border border-red-400/25 bg-red-500/10 p-5"
+          >
+            <p className="mb-1 font-semibold text-red-200">Время вышло</p>
+            <p className="mb-4 text-sm text-white/55">
+              Вы не можете изменить текст, но можете отправить написанное на проверку.
+            </p>
+            <div className="flex gap-3">
+              <motion.button
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={onSubmit}
+                disabled={!text.trim()}
+                className="rounded-full border border-teal-300/20 bg-teal-300 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-teal-200 disabled:cursor-not-allowed disabled:bg-white/15 disabled:text-white/35"
+              >
+                Отправить на проверку
+              </motion.button>
+              <motion.button
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={onBack}
+                className="rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm text-white/60 transition hover:bg-white/[0.08] hover:text-white"
+              >
+                Назад к вариантам
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
+      {!expired && <div className="flex items-center justify-between gap-3">
         <motion.button
           whileHover={{ y: -1 }}
           whileTap={{ scale: 0.98 }}
           onClick={onSubmit}
-          disabled={expired}
-          className="rounded-full border border-teal-300/20 bg-teal-300 px-5 py-3 text-sm font-medium text-black transition hover:bg-teal-200 disabled:cursor-not-allowed disabled:bg-white/15 disabled:text-white/35"
+          className="rounded-full border border-teal-300/20 bg-teal-300 px-5 py-3 text-sm font-medium text-black transition hover:bg-teal-200"
         >
           Отправить
         </motion.button>
-      </div>
+      </div>}
     </div>
   );
 }
