@@ -626,9 +626,8 @@ function TaskView({
 
   return (
     <div>
-      <div className="mb-5">
-        {/* Первая строка: назад + тоггл */}
-        <div className="mb-3 flex items-center justify-between gap-3">
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
           <button
             onClick={onBack}
             className="inline-flex items-center gap-2 text-sm text-white/55 transition hover:text-white"
@@ -636,24 +635,10 @@ function TaskView({
             <ChevronLeft className="h-4 w-4" />
             К вариантам
           </button>
-
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-2 text-sm text-teal-100/90">
-            <span className="hidden sm:inline">Режим экзамена</span>
-            <button
-              type="button"
-              onClick={() => setExamMode((prev) => !prev)}
-              aria-pressed={examMode}
-              className={`relative h-6 w-11 rounded-full transition-colors ${examMode ? "bg-teal-300" : "bg-white/15"}`}
-            >
-              <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${examMode ? "left-[22px]" : "left-0.5"}`} />
-            </button>
+          <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
+            <Icon className="h-4 w-4" />
+            {currentTask.title} · Вариант {activeVariant.label}
           </div>
-        </div>
-
-        {/* Вторая строка: бейдж варианта */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
-          <Icon className="h-4 w-4" />
-          {currentTask.title} · Вариант {activeVariant.label}
         </div>
       </div>
 
@@ -717,6 +702,21 @@ function TaskView({
 
 </div>
 
+      <div className="mb-4 flex items-center justify-between gap-3 rounded-[20px] border border-white/8 bg-white/[0.02] px-4 py-3">
+        <div>
+          <p className="text-sm font-medium text-white/80">Режим экзамена</p>
+          <p className="text-xs text-white/40">Таймер {Math.floor(currentTask.duration / 60)} мин, подсчёт слов скрыт</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setExamMode((prev) => !prev)}
+          aria-pressed={examMode}
+          className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${examMode ? "bg-teal-300" : "bg-white/15"}`}
+        >
+          <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${examMode ? "left-[22px]" : "left-0.5"}`} />
+        </button>
+      </div>
+
       <div className="mb-4">
         <div className="mb-2 flex items-center justify-between gap-3">
           <label className="block text-sm text-white/60">
@@ -775,14 +775,8 @@ function TaskView({
         )}
       </div>
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="text-sm text-white/45">
-          {examMode
-            ? expired
-              ? "Время вышло — отправка отключена."
-              : `Режим экзамена активен: ${Math.floor(currentTask.duration / 60)} минут. Подсчет слов скрыт`
-            : "Режим экзамена выключен — таймер скрыт, доступен подсчет слов."}
-        </div>
+      <div className="flex items-center justify-between gap-3">
+        {expired && <p className="text-sm text-red-300">Время вышло — отправка отключена.</p>}
 
         <motion.button
           whileHover={{ y: -1 }}
