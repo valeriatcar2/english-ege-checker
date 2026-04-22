@@ -626,19 +626,17 @@ function TaskView({
 
   return (
     <div>
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center gap-2 text-sm text-white/55 transition hover:text-white"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            К вариантам
-          </button>
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/15 bg-teal-400/10 px-3 py-1.5 text-sm text-teal-100/90">
-            <Icon className="h-4 w-4" />
-            {currentTask.title} · Вариант {activeVariant.label}
-          </div>
+      <div className="mb-5 flex items-center gap-2 sm:gap-3">
+        <button
+          onClick={onBack}
+          className="inline-flex shrink-0 items-center gap-1 text-xs text-white/55 transition hover:text-white sm:gap-2 sm:text-sm"
+        >
+          <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          К вариантам
+        </button>
+        <div className="inline-flex min-w-0 items-center gap-1.5 rounded-full border border-teal-400/15 bg-teal-400/10 px-2.5 py-1.5 text-xs text-teal-100/90 sm:gap-2 sm:px-3 sm:text-sm">
+          <Icon className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+          <span className="truncate">{currentTask.title} · Вариант {activeVariant.label}</span>
         </div>
       </div>
 
