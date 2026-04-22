@@ -484,7 +484,7 @@ function ChooseTask({ setMode }: ChooseTaskProps) {
 
                 <div
                   className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
-                    isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="px-4 pb-4 text-sm leading-7 text-white/65">
